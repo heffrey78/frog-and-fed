@@ -1,0 +1,21 @@
+{
+  "name": "frog-site",
+  "version": "1.0.0",
+  "description": "**A love story nobody asked for. A romance nobody could prevent.**",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heffrey78/frog-and-fed.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/heffrey78/frog-and-fed/issues"
+  },
+  "homepage": "https://github.com/heffrey78/frog-and-fed#readme"
+}
