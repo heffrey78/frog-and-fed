@@ -34,6 +34,24 @@ This is a **static website project** with no build system or dependencies:
 - **No build commands needed** - all files are self-contained
 - **No package manager** - pure HTML/CSS/JavaScript
 
+## Quick Deployment
+
+### GitHub Pages (Recommended)
+```bash
+./deploy-github.sh
+```
+- **Live URL**: https://heffrey78.github.io/frog-and-fed/
+- **Rebuild time**: ~1-2 minutes
+- **Auto-commits and pushes changes**
+
+### Google Cloud Platform
+```bash
+./deploy.fish
+```
+- **Live URL**: https://storage.googleapis.com/frog-and-fed-website-20251017/index.html
+- **Immediate deployment**
+- **Full file upload with content type management**
+
 ## Deployment to Google Cloud Platform
 
 ### Prerequisites
