@@ -6981,8 +6981,102 @@ Level 4: National Guard for twerking unicorns</code>
                         dialogue: "\"Understanding is the first step toward change.\"",
                         ending: "Friendship",
                         endingType: "neutral"
+                    },
+                    // Missing story nodes
+                    art_explanation: {
+                        text: "You gesture grandly, explaining how the frog represents resilience and transformation. Martinez listens intently.",
+                        speaker: "Martinez",
+                        dialogue: "\"So you're saying this is... political theater?\"",
+                        choices: [
+                            { text: "🎭 'Everything is political theater'", next: "theater_philosophy", understanding: +15 },
+                            { text: "🐸 'This is just who I am'", next: "authenticity_moment", romance: +10, understanding: +5 },
+                            { text: "💫 'Art changes hearts'", next: "art_changes_hearts", romance: +5, understanding: +10 }
+                        ],
+                        background: "neutral"
+                    },
+                    compromise_attempt: {
+                        text: "You suggest moving to a designated protest area while keeping the demonstration peaceful.",
+                        speaker: "Martinez",
+                        dialogue: "\"That's... actually reasonable. I wasn't expecting reasonable today.\"",
+                        choices: [
+                            { text: "😊 'Reasonable is my middle name'", next: "reasonable_response", romance: +10, understanding: +10 },
+                            { text: "🤝 'We both want peace'", next: "peace_seeking", understanding: +15 },
+                            { text: "☕ 'Celebrate with coffee?'", next: "coffee_suggestion", romance: +15, understanding: +5 }
+                        ],
+                        background: "neutral"
+                    },
+                    brave_stupid: {
+                        text: "Martinez actually laughs - a genuine, surprised laugh that echoes off the protest barriers.",
+                        speaker: "Martinez",
+                        dialogue: "\"Okay, I'll give you points for honesty. And style.\"",
+                        choices: [
+                            { text: "🎪 'Style is everything'", next: "style_matters", romance: +15 },
+                            { text: "💪 'Bravery runs in the family'", next: "family_courage", understanding: +10, romance: +5 },
+                            { text: "😏 'What can I say?'", next: "confident_shrug", romance: +10, tension: +5 }
+                        ],
+                        background: "playful"
+                    },
+                    philosophy_quote: {
+                        text: "You quote Thoreau about civil disobedience. Martinez's expression shifts from annoyance to genuine interest.",
+                        speaker: "Martinez",
+                        dialogue: "\"Civil Disobedience... I read that in college. Before I became the system.\"",
+                        choices: [
+                            { text: "📚 'It's never too late to remember'", next: "remember_ideals", understanding: +20 },
+                            { text: "💭 'What changed for you?'", next: "what_changed", understanding: +15 },
+                            { text: "🌱 'We all grow and change'", next: "growth_acceptance", understanding: +10, romance: +5 }
+                        ],
+                        background: "breakthrough"
+                    },
+                    intense_stare: {
+                        text: "Your googly eyes create an unexpectedly intense moment. Martinez stares back, caught off guard.",
+                        speaker: "Martinez",
+                        dialogue: "\"This is the weirdest standoff I've ever been in.\"",
+                        choices: [
+                            { text: "👁️ 'Embrace the weird'", next: "embrace_weird", romance: +15, tension: -5 },
+                            { text: "🎭 'Life is performance art'", next: "life_performance", understanding: +10 },
+                            { text: "😂 Break character and laugh", next: "break_character", romance: +10, tension: -10 }
+                        ],
+                        background: "tense"
+                    },
+                    // Additional ending paths
+                    theater_philosophy: {
+                        text: "Your philosophical discussion attracts a crowd. Other protesters and officers listen as you debate the nature of performance and reality.",
+                        speaker: "Martinez",
+                        dialogue: "\"You're making me question everything I thought I knew about protests.\"",
+                        choices: [
+                            { text: "🤔 'Questions are good'", next: "ending_intellectual", understanding: +25 },
+                            { text: "💫 'Reality is fluid'", next: "ending_transformation", understanding: +20 },
+                            { text: "❤️ 'Question everything, including this'", next: "ending_romance", romance: +20, understanding: +15 }
+                        ],
+                        background: "breakthrough"
+                    },
+                    embrace_weird: {
+                        text: "Martinez surprisingly laughs and strikes a dramatic pose in response. The tension breaks completely.",
+                        speaker: "Martinez",
+                        dialogue: "\"You know what? This is the most fun I've had at work in years.\"",
+                        choices: [
+                            { text: "🎉 'Work should be fun!'", next: "work_philosophy", romance: +15, understanding: +10 },
+                            { text: "💃 'Dance party?'", next: "dance_invite", romance: +20, tension: -15 },
+                            { text: "☕ 'Coffee and more weird?'", next: "coffee_suggestion", romance: +15, understanding: +10 }
+                        ],
+                        background: "romantic"
+                    },
+                    // Additional endings
+                    ending_intellectual: {
+                        text: "Martinez becomes a philosophy student again, questioning authority through academic discourse. You guest lecture at their university.",
+                        speaker: "Narrator",
+                        dialogue: "\"Sometimes revolution begins with a question.\"",
+                        ending: "Intellectual",
+                        endingType: "good"
+                    },
+                    ending_conflict: {
+                        text: "The tension escalates. Martinez reluctantly arrests you, but visits you in jail to continue the conversation.",
+                        speaker: "Narrator",
+                        dialogue: "\"Even in conflict, connection finds a way.\"",
+                        ending: "Conflict",
+                        endingType: "neutral"
                     }
-                    // Add more story branches as needed
+                    // Add more as needed
                 };
             }
 
@@ -7010,6 +7104,10 @@ Level 4: National Guard for twerking unicorns</code>
                 if (this.gameState !== 'playing') return;
 
                 const currentNode = this.storyData[this.currentStoryNode];
+                if (!currentNode || !currentNode.choices || !currentNode.choices[choiceIndex]) {
+                    console.error('Invalid story node or choice:', this.currentStoryNode, choiceIndex);
+                    return;
+                }
                 const choice = currentNode.choices[choiceIndex];
 
                 // Apply stat changes
@@ -7037,7 +7135,12 @@ Level 4: National Guard for twerking unicorns</code>
 
             displayStoryNode(nodeId) {
                 const node = this.storyData[nodeId];
-                if (!node) return;
+                if (!node) {
+                    console.error('Missing story node:', nodeId);
+                    // Fallback to a generic ending
+                    this.handleMissingNode(nodeId);
+                    return;
+                }
 
                 // Update background
                 this.updateBackground(node.background);
@@ -7185,6 +7288,19 @@ Level 4: National Guard for twerking unicorns</code>
 
             loadBestEnding() {
                 document.getElementById('romanceHighScore').textContent = this.bestEnding;
+            }
+
+            handleMissingNode(nodeId) {
+                // Create a generic ending for missing nodes
+                const fallbackEnding = {
+                    text: "The story takes an unexpected turn... Sometimes the most interesting conversations happen when we go off script.",
+                    speaker: "Narrator",
+                    dialogue: "\"Every story is unique, even when it finds unexpected paths.\"",
+                    ending: "Unique Path",
+                    endingType: "neutral"
+                };
+
+                this.handleEnding(fallbackEnding);
             }
         }
 
