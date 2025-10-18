@@ -1088,6 +1088,185 @@
             }
         }
 
+        /* Meme Generator Styles */
+        .meme-generator-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .meme-canvas-container {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        #memeCanvas {
+            width: 100%;
+            height: auto;
+            max-width: 800px;
+            border: 3px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: crosshair;
+        }
+
+        .meme-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        #templateSelect,
+        #topText,
+        #bottomText {
+            padding: 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        #templateSelect:focus,
+        #topText:focus,
+        #bottomText:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .emoji-palette {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .emoji-btn {
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .emoji-btn:hover {
+            background: var(--primary);
+            transform: scale(1.2);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .meme-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .meme-btn {
+            background: linear-gradient(135deg, var(--primary), #4ade80);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .meme-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .meme-gallery {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 30px;
+            height: fit-content;
+        }
+
+        .meme-gallery h3 {
+            margin: 0 0 20px 0;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .featured-memes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .featured-meme {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .featured-meme img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .featured-meme .meme-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .featured-meme .meme-stats {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .meme-generator-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .meme-canvas-container {
+                padding: 20px;
+            }
+
+            #memeCanvas {
+                width: 100%;
+                height: auto;
+            }
+
+            .meme-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .emoji-palette {
+                justify-content: center;
+            }
+
+            .emoji-btn {
+                font-size: 1.5rem;
+            }
+        }
+
         /* Footer */
         footer {
             background: rgba(0,0,0,0.9);
@@ -1545,6 +1724,7 @@
             <li><a href="#posters">Posters</a></li>
             <li><a href="#quotes">Quotes</a></li>
             <li><a href="#story">The Story</a></li>
+            <li><a href="#meme-generator">Meme Generator</a></li>
             <li><a href="#memes">Meme Templates</a></li>
             <li><a href="#stats">Stats</a></li>
         </ul>
@@ -1918,6 +2098,61 @@
                     <div class="stat-number">∞</div>
                     <div class="stat-label">Meme Potential</div>
                     <div class="stat-emoji-celebration">💥</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Meme Generator -->
+        <section class="section" id="meme-generator">
+            <h2 class="section-title">🎨 Create Your Own Memes</h2>
+            <div class="meme-generator-container">
+                <div class="meme-canvas-container">
+                    <canvas id="memeCanvas" width="800" height="600"></canvas>
+                    <div class="meme-controls">
+                        <div class="control-group">
+                            <label>Choose Template:</label>
+                            <select id="templateSelect">
+                                <option value="drake">Drake Pointing</option>
+                                <option value="distracted">Distracted Boyfriend</option>
+                                <option value="buttons">Two Buttons</option>
+                                <option value="fine">This Is Fine</option>
+                                <option value="poster">Movie Poster Style</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Top Text:</label>
+                            <input type="text" id="topText" placeholder="Enter top text..." maxlength="100">
+                        </div>
+                        <div class="control-group">
+                            <label>Bottom Text:</label>
+                            <input type="text" id="bottomText" placeholder="Enter bottom text..." maxlength="100">
+                        </div>
+                        <div class="control-group">
+                            <label>Add Emojis:</label>
+                            <div class="emoji-palette">
+                                <span class="emoji-btn" onclick="addEmoji('🐸')">🐸</span>
+                                <span class="emoji-btn" onclick="addEmoji('👮‍♂️')">👮‍♂️</span>
+                                <span class="emoji-btn" onclick="addEmoji('💕')">💕</span>
+                                <span class="emoji-btn" onclick="addEmoji('🌶️')">🌶️</span>
+                                <span class="emoji-btn" onclick="addEmoji('🎭')">🎭</span>
+                                <span class="emoji-btn" onclick="addEmoji('💥')">💥</span>
+                                <span class="emoji-btn" onclick="addEmoji('😂')">😂</span>
+                                <span class="emoji-btn" onclick="addEmoji('🔥')">🔥</span>
+                            </div>
+                        </div>
+                        <div class="meme-actions">
+                            <button class="meme-btn" onclick="generateMeme()">🎨 Generate Meme</button>
+                            <button class="meme-btn" onclick="downloadMeme()">💾 Download</button>
+                            <button class="meme-btn" onclick="shareToSocial()">📱 Share</button>
+                            <button class="meme-btn" onclick="randomizeMeme()">🎲 Surprise Me!</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="meme-gallery">
+                    <h3>🏆 Community Creations</h3>
+                    <div class="featured-memes" id="featuredMemes">
+                        <!-- Featured memes will be populated here -->
+                    </div>
                 </div>
             </div>
         </section>
@@ -3104,7 +3339,40 @@ Level 4: National Guard for twerking unicorns</code>
         }
 
         function createCharacterMeme(character) {
-            alert(`🎨 Meme creator for ${character} - launching meme generator!`);
+            // Scroll to meme generator
+            document.getElementById('meme-generator').scrollIntoView({ behavior: 'smooth' });
+
+            // Pre-populate with character-specific content
+            setTimeout(() => {
+                const characterTexts = {
+                    seth: [
+                        "When you're just a frog but become a movement",
+                        "I've definitely had spicier tamales",
+                        "Dancing through the teargas like 🐸"
+                    ],
+                    fed: [
+                        "When your target is too cute to arrest",
+                        "Federal agent.exe has stopped working",
+                        "This wasn't in the training manual"
+                    ]
+                };
+
+                const texts = characterTexts[character] || characterTexts.seth;
+                const randomText = texts[Math.floor(Math.random() * texts.length)];
+
+                document.getElementById('topText').value = randomText;
+                document.getElementById('templateSelect').value = 'poster';
+
+                if (window.memeGenerator) {
+                    window.memeGenerator.currentTemplate = 'poster';
+                    window.memeGenerator.generateMeme();
+                }
+
+                // Track character meme creation
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('character_meme_created', character);
+                }
+            }, 1000);
         }
 
         function exploreRelationship(character) {
@@ -3124,10 +3392,383 @@ Level 4: National Guard for twerking unicorns</code>
             alert(`Alternate ending for ${storyId} - what if they had met differently? 🎭`);
         }
 
+        // Meme Generator System
+        class MemeGenerator {
+            constructor() {
+                this.canvas = document.getElementById('memeCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.currentTemplate = 'drake';
+                this.templates = this.initializeTemplates();
+                this.createdMemes = [];
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.loadFeaturedMemes();
+                this.generateMeme(); // Load default template
+            }
+
+            setupEventListeners() {
+                document.getElementById('templateSelect').addEventListener('change', (e) => {
+                    this.currentTemplate = e.target.value;
+                    this.generateMeme();
+                });
+
+                document.getElementById('topText').addEventListener('input', () => {
+                    this.generateMeme();
+                });
+
+                document.getElementById('bottomText').addEventListener('input', () => {
+                    this.generateMeme();
+                });
+
+                // Real-time preview
+                this.setupRealTimePreview();
+            }
+
+            setupRealTimePreview() {
+                let timeout;
+                const inputs = ['topText', 'bottomText'];
+
+                inputs.forEach(inputId => {
+                    document.getElementById(inputId).addEventListener('input', () => {
+                        clearTimeout(timeout);
+                        timeout = setTimeout(() => {
+                            this.generateMeme();
+                        }, 300);
+                    });
+                });
+            }
+
+            initializeTemplates() {
+                return {
+                    drake: {
+                        name: "Drake Pointing",
+                        width: 800,
+                        height: 600,
+                        elements: [
+                            { type: 'emoji', emoji: '🙅‍♂️', x: 100, y: 150, size: 80 },
+                            { type: 'emoji', emoji: '👉', x: 100, y: 400, size: 80 },
+                            { type: 'text', text: 'topText', x: 250, y: 180, maxWidth: 400, isTop: true },
+                            { type: 'text', text: 'bottomText', x: 250, y: 430, maxWidth: 400, isTop: false }
+                        ]
+                    },
+                    distracted: {
+                        name: "Distracted Boyfriend",
+                        width: 800,
+                        height: 600,
+                        elements: [
+                            { type: 'emoji', emoji: '👫', x: 100, y: 300, size: 60 },
+                            { type: 'emoji', emoji: '👀', x: 400, y: 250, size: 50 },
+                            { type: 'emoji', emoji: '👩', x: 600, y: 280, size: 60 },
+                            { type: 'text', text: 'topText', x: 400, y: 100, maxWidth: 400, isTop: true },
+                            { type: 'text', text: 'bottomText', x: 400, y: 500, maxWidth: 400, isTop: false }
+                        ]
+                    },
+                    buttons: {
+                        name: "Two Buttons",
+                        width: 800,
+                        height: 600,
+                        elements: [
+                            { type: 'emoji', emoji: '😰', x: 400, y: 200, size: 80 },
+                            { type: 'rect', x: 200, y: 350, width: 180, height: 60, color: '#ff6b6b' },
+                            { type: 'rect', x: 420, y: 350, width: 180, height: 60, color: '#4ecdc4' },
+                            { type: 'text', text: 'topText', x: 290, y: 385, maxWidth: 160, isButton: true },
+                            { type: 'text', text: 'bottomText', x: 510, y: 385, maxWidth: 160, isButton: true }
+                        ]
+                    },
+                    fine: {
+                        name: "This Is Fine",
+                        width: 800,
+                        height: 600,
+                        elements: [
+                            { type: 'emoji', emoji: '🐶', x: 300, y: 300, size: 100 },
+                            { type: 'emoji', emoji: '🔥', x: 150, y: 200, size: 40 },
+                            { type: 'emoji', emoji: '🔥', x: 500, y: 180, size: 40 },
+                            { type: 'emoji', emoji: '🔥', x: 600, y: 250, size: 40 },
+                            { type: 'text', text: 'topText', x: 400, y: 100, maxWidth: 600, isTop: true },
+                            { type: 'text', text: 'bottomText', x: 400, y: 500, maxWidth: 600, isTop: false }
+                        ]
+                    },
+                    poster: {
+                        name: "Movie Poster Style",
+                        width: 600,
+                        height: 800,
+                        elements: [
+                            { type: 'emoji', emoji: '🐸', x: 200, y: 300, size: 120 },
+                            { type: 'emoji', emoji: '👮‍♂️', x: 400, y: 300, size: 120 },
+                            { type: 'emoji', emoji: '💕', x: 300, y: 450, size: 60 },
+                            { type: 'text', text: 'topText', x: 300, y: 150, maxWidth: 500, isTitle: true },
+                            { type: 'text', text: 'bottomText', x: 300, y: 700, maxWidth: 500, isTagline: true }
+                        ]
+                    }
+                };
+            }
+
+            generateMeme() {
+                const template = this.templates[this.currentTemplate];
+                const topText = document.getElementById('topText').value || 'TOP TEXT';
+                const bottomText = document.getElementById('bottomText').value || 'BOTTOM TEXT';
+
+                // Set canvas size
+                this.canvas.width = template.width;
+                this.canvas.height = template.height;
+
+                // Clear canvas
+                this.ctx.fillStyle = '#ffffff';
+                this.ctx.fillRect(0, 0, template.width, template.height);
+
+                // Draw elements
+                template.elements.forEach(element => {
+                    this.drawElement(element, topText, bottomText);
+                });
+
+                // Track meme generation
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('meme_generated', {
+                        template: this.currentTemplate,
+                        hasTopText: topText.length > 0,
+                        hasBottomText: bottomText.length > 0
+                    });
+                }
+            }
+
+            drawElement(element, topText, bottomText) {
+                const ctx = this.ctx;
+
+                switch (element.type) {
+                    case 'emoji':
+                        ctx.font = `${element.size}px Arial`;
+                        ctx.textAlign = 'center';
+                        ctx.fillText(element.emoji, element.x, element.y);
+                        break;
+
+                    case 'rect':
+                        ctx.fillStyle = element.color;
+                        ctx.fillRect(element.x, element.y, element.width, element.height);
+                        break;
+
+                    case 'text':
+                        const text = element.text === 'topText' ? topText : bottomText;
+                        this.drawMemeText(text, element);
+                        break;
+                }
+            }
+
+            drawMemeText(text, element) {
+                const ctx = this.ctx;
+
+                // Set font based on text type
+                if (element.isTitle) {
+                    ctx.font = 'bold 48px Impact, Arial';
+                } else if (element.isTagline) {
+                    ctx.font = 'italic 24px Arial';
+                } else if (element.isButton) {
+                    ctx.font = 'bold 16px Arial';
+                } else {
+                    ctx.font = 'bold 32px Impact, Arial';
+                }
+
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+
+                // Text styling for visibility
+                ctx.strokeStyle = '#000000';
+                ctx.lineWidth = element.isButton ? 1 : 3;
+                ctx.fillStyle = element.isButton ? '#ffffff' : '#ffffff';
+
+                // Word wrap for long text
+                const words = text.split(' ');
+                const maxWidth = element.maxWidth || 400;
+                let line = '';
+                let y = element.y;
+                const lineHeight = element.isTitle ? 60 : (element.isButton ? 20 : 40);
+
+                words.forEach((word, index) => {
+                    const testLine = line + word + ' ';
+                    const metrics = ctx.measureText(testLine);
+                    const testWidth = metrics.width;
+
+                    if (testWidth > maxWidth && index > 0) {
+                        ctx.strokeText(line, element.x, y);
+                        ctx.fillText(line, element.x, y);
+                        line = word + ' ';
+                        y += lineHeight;
+                    } else {
+                        line = testLine;
+                    }
+                });
+
+                ctx.strokeText(line, element.x, y);
+                ctx.fillText(line, element.x, y);
+            }
+
+            downloadMeme() {
+                const link = document.createElement('a');
+                link.download = `frog-fed-meme-${Date.now()}.png`;
+                link.href = this.canvas.toDataURL();
+                link.click();
+
+                // Track download
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('meme_downloaded', {
+                        template: this.currentTemplate
+                    });
+                }
+            }
+
+            shareToSocial() {
+                if (navigator.share) {
+                    this.canvas.toBlob((blob) => {
+                        const file = new File([blob], 'frog-fed-meme.png', { type: 'image/png' });
+                        navigator.share({
+                            title: 'Check out my Frog & Fed meme!',
+                            text: 'Created with the Frog & Fed meme generator 🐸👮‍♂️💕',
+                            files: [file]
+                        });
+                    });
+                } else {
+                    // Fallback - copy to clipboard
+                    this.canvas.toBlob((blob) => {
+                        navigator.clipboard.write([
+                            new ClipboardItem({ 'image/png': blob })
+                        ]).then(() => {
+                            alert('Meme copied to clipboard! 📋 Share it anywhere! 🐸💕');
+                        }).catch(() => {
+                            alert('Right-click the meme and select "Save image" to share! 📱');
+                        });
+                    });
+                }
+
+                // Track share
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('meme_shared', {
+                        template: this.currentTemplate
+                    });
+                }
+            }
+
+            randomizeMeme() {
+                const templates = Object.keys(this.templates);
+                const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+
+                const funnyTexts = [
+                    "When they said 'violent extremists' but it's just dancing frogs",
+                    "POV: You're a federal agent vs inflatable animals",
+                    "This could be us but you're in tactical gear",
+                    "Local frog too powerful for federal agents",
+                    "Breaking: Dancing frog causes existential crisis",
+                    "When your enemy is too cute to arrest",
+                    "Federal agent.exe has stopped working",
+                    "This is why we can't have nice protests"
+                ];
+
+                const randomTopText = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
+                const randomBottomText = funnyTexts[Math.floor(Math.random() * funnyTexts.length)];
+
+                document.getElementById('templateSelect').value = randomTemplate;
+                document.getElementById('topText').value = randomTopText;
+                document.getElementById('bottomText').value = randomBottomText;
+
+                this.currentTemplate = randomTemplate;
+                this.generateMeme();
+
+                // Track randomization
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('meme_randomized', {
+                        template: randomTemplate
+                    });
+                }
+            }
+
+            loadFeaturedMemes() {
+                const featuredMemes = [
+                    {
+                        title: "Community Favorite",
+                        description: "🐸 vs 👮‍♂️ Epic Romance",
+                        likes: 420
+                    },
+                    {
+                        title: "Viral Hit",
+                        description: "Spicier than tamales 🌶️",
+                        likes: 1337
+                    },
+                    {
+                        title: "Staff Pick",
+                        description: "Constitutional cuteness 💕",
+                        likes: 666
+                    }
+                ];
+
+                const container = document.getElementById('featuredMemes');
+                container.innerHTML = featuredMemes.map(meme => `
+                    <div class="featured-meme">
+                        <div class="meme-title">${meme.title}</div>
+                        <div class="meme-description">${meme.description}</div>
+                        <div class="meme-stats">❤️ ${meme.likes} likes</div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Global functions for meme generator
+        function addEmoji(emoji) {
+            const activeInput = document.activeElement;
+            if (activeInput && (activeInput.id === 'topText' || activeInput.id === 'bottomText')) {
+                const start = activeInput.selectionStart;
+                const end = activeInput.selectionEnd;
+                const currentValue = activeInput.value;
+                activeInput.value = currentValue.slice(0, start) + emoji + currentValue.slice(end);
+                activeInput.setSelectionRange(start + emoji.length, start + emoji.length);
+                activeInput.focus();
+
+                // Trigger meme generation
+                if (window.memeGenerator) {
+                    window.memeGenerator.generateMeme();
+                }
+            } else {
+                // Add to top text if no input is focused
+                const topText = document.getElementById('topText');
+                topText.value += emoji;
+                topText.focus();
+                if (window.memeGenerator) {
+                    window.memeGenerator.generateMeme();
+                }
+            }
+        }
+
+        function generateMeme() {
+            if (window.memeGenerator) {
+                window.memeGenerator.generateMeme();
+            }
+        }
+
+        function downloadMeme() {
+            if (window.memeGenerator) {
+                window.memeGenerator.downloadMeme();
+            }
+        }
+
+        function shareToSocial() {
+            if (window.memeGenerator) {
+                window.memeGenerator.shareToSocial();
+            }
+        }
+
+        function randomizeMeme() {
+            if (window.memeGenerator) {
+                window.memeGenerator.randomizeMeme();
+            }
+        }
+
         // Initialize systems when page loads
         window.addEventListener('load', () => {
             // Initialize timeline system
             window.timelineSystem = new InteractiveTimeline();
+
+            // Initialize meme generator
+            window.memeGenerator = new MemeGenerator();
 
             // Check for reduced motion preference
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
