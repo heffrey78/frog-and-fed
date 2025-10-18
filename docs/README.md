@@ -2,7 +2,17 @@
 
 **A love story nobody asked for. A romance nobody could prevent.**
 
-Welcome to the greatest satirical documentation of the 2025 Portland protests, where inflatable frog costumes met federal law enforcement and somehow became the most effective protest tactic of the decade.
+Welcome to the most comprehensive satirical documentation of the 2025 Portland protests, where inflatable frog costumes met federal law enforcement and became the most effective protest tactic of the decade.
+
+## 🌟 What's New (October 2025)
+
+- **🎮 Three Interactive Games**: Frog Pong, Tear Gas Tetris, Romance Simulator
+- **🎨 Advanced Meme Generator**: Create custom protest-themed memes
+- **📊 Interactive Timeline**: Explore the full story with branching narratives
+- **✨ Particle Effects**: Hero section with floating emoji animations
+- **🥚 Easter Egg System**: Hidden content throughout the site
+- **📱 Mobile Optimized**: Perfect experience on all devices
+- **♿ Accessibility**: WCAG 2.1 AA compliant with reduced motion support
 
 ## What This Is
 

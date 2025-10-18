@@ -1,0 +1,498 @@
+/* Games & Interactive Elements - The Frog and The Fed */
+
+/* Game Cards */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.game-card {
+    background: rgba(255,255,255,0.95);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 3px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+    border-radius: 22px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+    opacity: 1;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+.game-icon, .game-emoji {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.game-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.game-card p {
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.game-stats {
+    margin: 15px 0;
+    font-size: 0.9rem;
+}
+
+.high-score {
+    color: var(--secondary);
+    font-weight: 600;
+}
+
+.game-play-btn {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.game-play-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    position: relative;
+    background: var(--dark);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #ccc;
+    cursor: pointer;
+    z-index: 1001;
+    line-height: 1;
+    transition: all 0.3s ease;
+}
+
+.close:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* Game Modal Specific Styles */
+.game-modal-content {
+    width: 800px;
+    max-width: 95vw;
+    background: var(--dark);
+}
+
+.game-modal h2 {
+    color: var(--primary);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Frog Pong Styles */
+#frogPongCanvas {
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    background: #000;
+    display: block;
+    margin: 20px auto;
+}
+
+.game-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.game-controls button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-controls button:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.game-controls button:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Tetris Styles */
+#tetrisCanvas, #nextPieceCanvas {
+    border: 2px solid var(--primary);
+    border-radius: 8px;
+    background: #1a1a2e;
+}
+
+.tetris-game-area {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 20px;
+    align-items: start;
+}
+
+.tetris-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 150px;
+}
+
+.tetris-info {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.tetris-info h4 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.next-piece-container {
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.touch-controls {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.touch-btn {
+    background: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.touch-btn:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.special-pieces {
+    background: rgba(255,255,255,0.05);
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+.special-pieces h4 {
+    color: var(--accent);
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.special-pieces ul {
+    list-style: none;
+    font-size: 0.9rem;
+}
+
+.special-pieces li {
+    margin-bottom: 5px;
+    padding: 3px 0;
+}
+
+/* Romance Simulator Styles */
+.romance-modal-content {
+    width: 900px;
+    max-width: 95vw;
+    background: var(--dark);
+    color: white;
+}
+
+.romance-game-area {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.romance-scene {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scene-background {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background: linear-gradient(45deg, rgba(255,192,203,0.1), rgba(135,206,235,0.1));
+    border-radius: 10px;
+}
+
+.scene-characters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 200px;
+    padding: 0 40px;
+}
+
+.character {
+    font-size: 4rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-shadow: 0 0 20px rgba(255,255,255,0.3);
+}
+
+.character-frog:hover {
+    transform: scale(1.1) rotate(10deg);
+}
+
+.character-fed:hover {
+    transform: scale(1.1) rotate(-10deg);
+}
+
+.scene-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.romance-stats {
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.stat-bar {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+}
+
+.stat-bar-container {
+    flex: 1;
+    height: 12px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.stat-bar-fill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 6px;
+}
+
+.romance-bar {
+    background: linear-gradient(90deg, #ff69b4, #ff1493);
+}
+
+.tension-bar {
+    background: linear-gradient(90deg, #ff4500, #dc143c);
+}
+
+.understanding-bar {
+    background: linear-gradient(90deg, #32cd32, #228b22);
+}
+
+.romance-info {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.story-display {
+    grid-column: 1 / -1;
+    background: rgba(255,255,255,0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+.story-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    min-height: 80px;
+}
+
+.character-speaking {
+    font-style: italic;
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.choice-buttons {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.choice-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 200px;
+}
+
+.choice-btn:hover {
+    background: var(--secondary);
+    transform: translateY(-2px);
+}
+
+.choice-btn:disabled {
+    background: #666;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.romance-controls {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+.romance-controls button {
+    background: rgba(255,255,255,0.1);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.romance-controls button:hover {
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-1px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .game-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .game-modal-content {
+        width: 95vw;
+        padding: 20px;
+    }
+
+    .tetris-game-area {
+        grid-template-columns: 1fr;
+    }
+
+    .touch-controls {
+        display: grid;
+    }
+
+    .romance-game-area {
+        grid-template-columns: 1fr;
+    }
+
+    .scene-characters {
+        padding: 0 20px;
+    }
+
+    .character {
+        font-size: 3rem;
+    }
+
+    .choice-btn {
+        min-width: 150px;
+    }
+}

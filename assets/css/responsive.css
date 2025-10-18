@@ -1,0 +1,398 @@
+/* Responsive Design - The Frog and The Fed */
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .container {
+        padding: 60px 15px;
+    }
+
+    .hero {
+        padding: 30px 15px;
+    }
+
+    .poster-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+
+    .cta-buttons {
+        gap: 15px;
+    }
+
+    .btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    /* Navigation */
+    nav ul {
+        gap: 15px;
+        padding: 0 15px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 90vh;
+        padding: 20px 15px;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 6vw, 3.5rem);
+        margin-bottom: 15px;
+    }
+
+    .hero .subtitle {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+        margin-bottom: 30px;
+    }
+
+    .hero-poster {
+        margin: 30px auto;
+        max-width: 90%;
+    }
+
+    /* Container */
+    .container {
+        padding: 40px 15px;
+    }
+
+    .section {
+        margin-bottom: 60px;
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        margin-bottom: 40px;
+    }
+
+    /* Poster Gallery */
+    .poster-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .poster-card {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+
+    .poster-image {
+        height: 400px;
+    }
+
+    .poster-content {
+        padding: 20px;
+    }
+
+    .poster-content h3 {
+        font-size: 1.3rem;
+    }
+
+    .poster-content .tagline {
+        font-size: 1rem;
+    }
+
+    /* Buttons */
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+        padding: 15px 20px;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 20px 15px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    /* Timeline */
+    .timeline-container {
+        padding: 0 10px;
+    }
+
+    .timeline-item {
+        margin-bottom: 30px;
+    }
+
+    .timeline-content {
+        padding: 15px;
+    }
+
+    .timeline-content h4 {
+        font-size: 1.1rem;
+    }
+
+    /* Interactive Elements */
+    .interactive-frog {
+        bottom: 20px;
+        left: 20px;
+        font-size: 2.5rem;
+    }
+
+    /* Quote Carousel */
+    .quote-carousel {
+        height: 100px;
+        margin: 30px auto;
+    }
+
+    .quote {
+        font-size: 1.1rem;
+        padding: 0 15px;
+    }
+
+    .quote-author {
+        font-size: 0.8rem;
+    }
+
+    /* Meme Generator */
+    .meme-generator-container {
+        padding: 15px;
+    }
+
+    .meme-templates {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 15px;
+    }
+
+    .meme-template {
+        padding: 15px 10px;
+    }
+
+    .meme-template h4 {
+        font-size: 0.9rem;
+    }
+
+    #memeCanvas {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .meme-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .meme-controls input,
+    .meme-controls select,
+    .meme-controls button {
+        width: 100%;
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+    /* Navigation */
+    nav {
+        padding: 10px 0;
+    }
+
+    nav ul {
+        gap: 10px;
+    }
+
+    nav a {
+        padding: 5px 8px;
+        font-size: 0.8rem;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 15px 10px;
+    }
+
+    .hero h1 {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+        letter-spacing: -1px;
+    }
+
+    .hero .subtitle {
+        font-size: clamp(0.9rem, 4vw, 1.3rem);
+    }
+
+    /* Container */
+    .container {
+        padding: 30px 10px;
+    }
+
+    /* Poster Cards */
+    .poster-content {
+        padding: 15px;
+    }
+
+    .poster-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .poster-content .tagline {
+        font-size: 0.9rem;
+    }
+
+    .poster-content p {
+        font-size: 0.9rem;
+    }
+
+    /* Tags */
+    .tags {
+        gap: 5px;
+    }
+
+    .tag {
+        padding: 3px 10px;
+        font-size: 0.8rem;
+    }
+
+    /* Interactive Elements */
+    .interactive-frog {
+        bottom: 15px;
+        left: 15px;
+        font-size: 2rem;
+    }
+
+    /* Modal Adjustments */
+    .modal {
+        padding: 10px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    /* Game Controls */
+    .game-controls {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .game-controls button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .touch-btn {
+        padding: 12px;
+        font-size: 1rem;
+    }
+}
+
+/* Large Desktop Styles */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1600px;
+        padding: 100px 40px;
+    }
+
+    .poster-grid {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 50px;
+    }
+
+    .hero-poster {
+        max-width: 900px;
+    }
+
+    .section-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 80px;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .poster-image img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Print Styles */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    nav,
+    .interactive-frog,
+    .game-controls,
+    .modal {
+        display: none !important;
+    }
+
+    .hero {
+        background: white !important;
+    }
+
+    .poster-card {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+}
+
+/* Accessibility - High Contrast Mode */
+@media (prefers-contrast: high) {
+    :root {
+        --primary: #0066cc;
+        --secondary: #004499;
+        --accent: #ff6600;
+        --dark: #000000;
+        --light: #ffffff;
+    }
+
+    .btn {
+        border: 2px solid currentColor;
+    }
+
+    .poster-card {
+        border: 2px solid #333;
+    }
+}
+
+/* Accessibility - Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero::before {
+        animation: none;
+    }
+
+    .floating-emoji {
+        animation: none;
+    }
+
+    .interactive-frog {
+        animation: none;
+    }
+}

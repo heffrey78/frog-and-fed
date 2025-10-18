@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐸 The Frog and The Fed 💕 - A Love Story Nobody Asked For</title>
+    <meta name="description" content="A satirical love story documenting the 2025 Portland protests where inflatable frog costumes met federal law enforcement. Romance, resistance, and absurdist humor.">
+
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/games.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#games">Games</a></li>
+            <li><a href="#memes">Meme Templates</a></li>
+            <li><a href="#stats">Stats</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <canvas id="particleCanvas"></canvas>
+        <div class="hero-content">
+            <h1>The Frog and The Fed</h1>
+            <p class="subtitle">A love story nobody asked for. A romance nobody could prevent.</p>
+
+            <div class="hero-poster">
+                <img src="assets/frog-and-fed-notebook.png" alt="The Frog and The Fed movie poster in the style of The Notebook">
+            </div>
+
+            <div class="quote-carousel">
+                <div class="quote active">
+                    <div class="quote-text">But love... love is inflatable</div>
+                    <div class="quote-author">— The Notebook: Portland Edition</div>
+                </div>
+            </div>
+
+            <div class="cta-buttons">
+                <a href="#gallery" class="btn btn-primary">Explore the Gallery</a>
+                <a href="#games" class="btn btn-secondary">Play Games</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Movie Poster Gallery -->
+        <section class="section" id="gallery">
+            <h2 class="section-title">The Movie Poster Collection</h2>
+            <div class="poster-grid">
+                <!-- Poster cards will be populated by JavaScript -->
+                <div class="poster-card" onclick="openModal('notebook')">
+                    <div class="poster-image">
+                        <img src="assets/frog-and-fed-notebook.png" alt="The Notebook parody poster">
+                    </div>
+                    <div class="poster-content">
+                        <h3>The Notebook</h3>
+                        <p class="tagline">"But love... love is inflatable"</p>
+                        <p>When Noah met Allie at a Portland protest, sparks flew - along with tear gas.</p>
+                        <div class="tags">
+                            <span class="tag">Romance</span>
+                            <span class="tag">Drama</span>
+                            <span class="tag">Constitutional Rights</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional poster cards... -->
+                <div class="poster-card" onclick="openModal('whenRiot')">
+                    <div class="poster-image">
+                        <img src="assets/when-riot-met-sally.png" alt="When Harry Met Sally parody poster">
+                    </div>
+                    <div class="poster-content">
+                        <h3>When Riot Met Sally</h3>
+                        <p class="tagline">"Can a fed and a frog be just friends?"</p>
+                        <p>A 12-hour protest becomes a journey of discovery and unlikely connection.</p>
+                        <div class="tags">
+                            <span class="tag">Comedy</span>
+                            <span class="tag">Romance</span>
+                            <span class="tag">Friendship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More poster cards would be added here -->
+            </div>
+        </section>
+
+        <!-- Interactive Timeline -->
+        <section class="section" id="timeline">
+            <h2 class="section-title">Timeline of Events</h2>
+            <div class="timeline-controls">
+                <button id="detailed-view" class="view-btn active">📖 Detailed View</button>
+                <button id="summary-view" class="view-btn">⚡ Quick Summary</button>
+            </div>
+
+            <div class="timeline-container detailed-view">
+                <div class="timeline-item interactive-timeline-item" data-emoji="🐸" data-scene="👤➡️🐸" data-caption="The first frog appears" data-character="seth" data-story-id="beginning" onclick="openTimelineStory(this)">
+                    <div class="timeline-marker">
+                        <span class="timeline-emoji">🐸</span>
+                        <div class="timeline-line"></div>
+                    </div>
+                    <div class="timeline-content">
+                        <h4>June 2025: The Beginning</h4>
+                        <p>Seth Todd, 24, starts wearing a green inflatable frog costume to ICE facility protests. His mission: show how ridiculous the "violent terrorist" narrative is.</p>
+                        <div class="timeline-hover-card">
+                            <div class="emoji-mini-scene">👤➡️🐸</div>
+                            <p>"Time to get silly with authoritarianism"</p>
+                        </div>
+                        <div class="timeline-click-hint">🎬 Click to explore Seth's origin story</div>
+                    </div>
+                </div>
+
+                <!-- More timeline items would be added here -->
+            </div>
+        </section>
+
+        <!-- Games Section -->
+        <section class="section" id="games">
+            <h2 class="section-title">Interactive Games</h2>
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-emoji">🏓</div>
+                    <h3>Frog Pong</h3>
+                    <p>Classic pong but with inflatable frogs and power-ups! Can you beat the high score?</p>
+                    <div class="game-stats">
+                        <span class="high-score">High Score: <span id="frogPongHighScore">0</span></span>
+                    </div>
+                    <button class="game-play-btn" onclick="launchFrogPong()">🎮 Play Now</button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-emoji">🧩</div>
+                    <h3>Tear Gas Tetris</h3>
+                    <p>Stack protective gear to build the ultimate protest kit in this Tetris variant.</p>
+                    <div class="game-stats">
+                        <span class="high-score">High Score: <span id="tetrisHighScore">0</span></span>
+                    </div>
+                    <button class="game-play-btn" onclick="launchTetris()">🎮 Play Now</button>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-icon">💕📖</div>
+                    <h3>Romance Simulator</h3>
+                    <p>Navigate the complex relationship between Frog and Fed in this branching story.</p>
+                    <div class="game-stats">
+                        <span class="high-score">Best Ending: <span id="romanceHighScore">None</span></span>
+                    </div>
+                    <button class="game-play-btn" onclick="launchRomanceSimulator()">🎮 Play Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Meme Generator -->
+        <section class="section" id="memes">
+            <h2 class="section-title">Create Your Own Memes</h2>
+            <div class="meme-generator-container">
+                <div class="meme-templates">
+                    <!-- Templates populated by JavaScript -->
+                </div>
+                <div class="meme-workspace">
+                    <canvas id="memeCanvas"></canvas>
+                    <div class="meme-controls">
+                        <input type="text" id="topText" placeholder="Enter top text...">
+                        <input type="text" id="bottomText" placeholder="Enter bottom text...">
+                        <button id="generateMeme" class="btn btn-primary">Generate Meme</button>
+                        <button id="downloadMeme" class="btn btn-secondary">Download</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="section" id="stats">
+            <h2 class="section-title">By The Numbers</h2>
+            <div class="stats-grid">
+                <div class="stat-card" data-target="1500000" data-suffix="" data-emoji="🐸">
+                    <div class="stat-number">1.5M</div>
+                    <div class="stat-label">Social Media Impressions</div>
+                    <div class="stat-description">Total reach across all platforms</div>
+                </div>
+
+                <div class="stat-card" data-target="47" data-suffix="" data-emoji="🎥">
+                    <div class="stat-number">47</div>
+                    <div class="stat-label">News Outlets Covered</div>
+                    <div class="stat-description">From local blogs to international news</div>
+                </div>
+
+                <div class="stat-card" data-target="2399" data-suffix="" data-emoji="💰">
+                    <div class="stat-number">$23.99</div>
+                    <div class="stat-label">Cost of Original Frog Costume</div>
+                    <div class="stat-description">Best investment in democracy ever made</div>
+                </div>
+
+                <div class="stat-card" data-target="999999" data-suffix="∞" data-emoji="💕">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Romantic Possibilities</div>
+                    <div class="stat-description">Love finds a way</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Interactive Elements -->
+    <div class="interactive-frog" onclick="activateFrog()" title="Click me! 🐸">
+        🐸
+    </div>
+
+    <!-- Easter Egg -->
+    <div class="easter-egg" id="easter-egg">💕</div>
+
+    <!-- Game Modals (content loaded dynamically) -->
+    <div id="frogPongModal" class="modal game-modal">
+        <!-- Frog Pong modal content -->
+    </div>
+
+    <div id="tetrisModal" class="modal game-modal">
+        <!-- Tetris modal content -->
+    </div>
+
+    <div id="romanceModal" class="modal game-modal">
+        <!-- Romance Simulator modal content -->
+    </div>
+
+    <!-- Enhanced Modal for poster viewing -->
+    <div class="modal" id="modal">
+        <!-- Modal content loaded dynamically -->
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="assets/js/features/particles.js"></script>
+    <script src="assets/js/features/timeline.js"></script>
+    <script src="assets/js/features/meme-generator.js"></script>
+    <script src="assets/js/features/easter-eggs.js"></script>
+    <script src="assets/js/games/frog-pong.js"></script>
+    <script src="assets/js/games/tetris.js"></script>
+    <script src="assets/js/games/romance-simulator.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Performance and Analytics -->
+    <script>
+        // Simple performance tracking
+        if ('performance' in window) {
+            window.addEventListener('load', () => {
+                console.log('🐸 Site loaded successfully!');
+            });
+        }
+    </script>
+</body>
+</html>
