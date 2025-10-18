@@ -618,7 +618,7 @@
             to { opacity: 1; }
         }
 
-        /* Modal */
+        /* Enhanced Modal */
         .modal {
             display: none;
             position: fixed;
@@ -637,14 +637,85 @@
             display: flex;
         }
 
-        .modal-content {
+        .modal-content-enhanced {
             background: white;
             border-radius: 20px;
-            padding: 40px;
-            max-width: 800px;
+            max-width: 1200px;
             max-height: 90vh;
             overflow-y: auto;
             position: relative;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .modal-top-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            min-height: 400px;
+        }
+
+        .modal-poster-section {
+            background: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-poster-section img {
+            max-width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .modal-emoji-scene {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emoji-animation-container {
+            font-size: 3rem;
+            line-height: 1.2;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .emoji-heart {
+            animation: heartBeat 2s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .emoji-float {
+            animation: romanticFloat 4s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .emoji-bounce {
+            animation: gentleBounce 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .scene-caption {
+            color: white;
+            font-style: italic;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .modal-bottom-section {
+            padding: 40px;
+            background: var(--light);
+            border-radius: 0 0 20px 20px;
         }
 
         .modal-close {
@@ -653,12 +724,55 @@
             right: 20px;
             font-size: 2rem;
             cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
+            color: white;
+            transition: all 0.3s ease;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-close:hover {
-            color: var(--primary);
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Emoji Animations */
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes romanticFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(2deg); }
+            50% { transform: translateY(-15px) rotate(0deg); }
+            75% { transform: translateY(-5px) rotate(-2deg); }
+        }
+
+        @keyframes gentleBounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Responsive Modal */
+        @media (max-width: 768px) {
+            .modal-top-section {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content-enhanced {
+                max-width: 95vw;
+                margin: 10px;
+            }
+
+            .emoji-animation-container {
+                font-size: 2rem;
+            }
         }
 
         /* Responsive */
@@ -1087,11 +1201,31 @@ Level 4: National Guard for twerking unicorns</code>
     <!-- Easter Egg -->
     <div class="easter-egg" id="easter-egg">💕</div>
 
-    <!-- Modal -->
+    <!-- Enhanced Modal -->
     <div class="modal" id="modal">
-        <div class="modal-content">
+        <div class="modal-content-enhanced">
             <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div id="modal-body"></div>
+
+            <div class="modal-top-section">
+                <div class="modal-poster-section">
+                    <img id="modal-poster-img" src="" alt="">
+                </div>
+
+                <div class="modal-emoji-scene">
+                    <div class="emoji-animation-container" id="emoji-scene">
+                        <!-- Animated emoji scenes will be populated here -->
+                    </div>
+                    <div class="scene-caption" id="scene-caption">
+                        <!-- Scene description -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-bottom-section">
+                <div id="modal-body-enhanced">
+                    <!-- Rich content goes here -->
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1202,35 +1336,388 @@ Level 4: National Guard for twerking unicorns</code>
             }
         }
 
-        // Modal
+        // Enhanced Modal with Emoji Scenes
         function showModal(posterId) {
             const modal = document.getElementById('modal');
-            const modalBody = document.getElementById('modal-body');
-            
-            // Different content based on poster
-            const posterDetails = {
+            const modalPosterImg = document.getElementById('modal-poster-img');
+            const emojiScene = document.getElementById('emoji-scene');
+            const sceneCaption = document.getElementById('scene-caption');
+            const modalBody = document.getElementById('modal-body-enhanced');
+
+            // Poster assets mapping
+            const posterAssets = {
+                notebook: 'assets/frog-and-fed-notebook.png',
+                sally: 'assets/when-riot-met-sally.png',
+                titanic: 'assets/titanic-portand.png',
+                star: 'assets/star-is-inflated.png',
+                fault: 'assets/fault-in-our-teargas.png',
+                pride: 'assets/pride-and-pepperspray.png',
+                eternal: 'assets/eternal-sunshine-protest.png',
+                lady: 'assets/lady-and-tactical-response.png',
+                ghost: 'assets/ghost-portland.png',
+                fifty: 'assets/fifty-shades-pepperspray.png'
+            };
+
+            // Emoji scenes with animations
+            const emojiScenes = {
+                notebook: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">💧</div>
+                        <div style="margin: 0 20px;">↔️</div>
+                        <div class="emoji-bounce">👮‍♂️</div>
+                    `,
+                    caption: "A moment of connection in the Portland rain"
+                },
+                sally: {
+                    html: `
+                        <div class="emoji-bounce">🐸</div>
+                        <div class="emoji-float">☕</div>
+                        <div style="margin: 0 20px;">👁️‍🗨️</div>
+                        <div class="emoji-bounce">👮‍♂️</div>
+                        <div class="emoji-float">🍩</div>
+                    `,
+                    caption: "Can a fed and a frog be just friends?"
+                },
+                titanic: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">🌉</div>
+                        <div class="emoji-bounce">🎇</div>
+                        <br>
+                        <div style="font-size: 1.5rem; margin-top: 10px;">🚢💔</div>
+                    `,
+                    caption: "I'm the king of the world! (Portland edition)"
+                },
+                star: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">🎤</div>
+                        <div class="emoji-bounce">✨</div>
+                        <br>
+                        <div style="margin-top: 15px;">👮‍♂️📸</div>
+                    `,
+                    caption: "Sometimes you find your voice in the most unexpected places"
+                },
+                fault: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">💨</div>
+                        <div style="margin: 0 20px;">❤️</div>
+                        <div class="emoji-bounce">👮‍♂️</div>
+                        <div class="emoji-float">😢</div>
+                    `,
+                    caption: "Okay? Okay. (Some infinities are inflatable)"
+                },
+                pride: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">🌫️</div>
+                        <div style="margin: 0 20px;">↔️</div>
+                        <div class="emoji-bounce">👮‍♂️</div>
+                        <div class="emoji-float">🎭</div>
+                    `,
+                    caption: "You have bewitched me, body and googly-eyed soul"
+                },
+                eternal: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">✨</div>
+                        <div class="emoji-bounce">🌪️</div>
+                        <div class="emoji-float">👮‍♂️</div>
+                        <div class="emoji-heart">🌈</div>
+                    `,
+                    caption: "Meet me in Portland... in the memory hole"
+                },
+                lady: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">🍝</div>
+                        <div style="margin: 0 20px;">↔️</div>
+                        <div class="emoji-bounce">👮‍♂️</div>
+                        <div class="emoji-float">🎵</div>
+                    `,
+                    caption: "Bella notte... full of tear gas"
+                },
+                ghost: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">🎨</div>
+                        <div class="emoji-bounce">👻</div>
+                        <div class="emoji-float">👮‍♂️</div>
+                        <div class="emoji-heart">🏺</div>
+                    `,
+                    caption: '"Ditto" - The Frog, probably'
+                },
+                fifty: {
+                    html: `
+                        <div class="emoji-float">🐸</div>
+                        <div class="emoji-heart">⛓️</div>
+                        <div style="margin: 0 20px;">↔️</div>
+                        <div class="emoji-bounce">👮‍♂️</div>
+                        <div class="emoji-float">🏢</div>
+                    `,
+                    caption: '"Mr. Fed will see you now"'
+                }
+            };
+
+            // Rich content with production notes and quotes
+            const richContent = {
                 notebook: `
-                    <h2>THE FROG AND THE FED</h2>
-                    <h3>The Notebook Style</h3>
-                    <p><strong>Visual Description:</strong></p>
-                    <p>Iconic rain scene recreation. Federal agent in full tactical gear (gas mask off, vulnerable expression) reaching toward inflatable frog in heavy Portland downpour. Both silhouetted against moody blue-gray sky. Frog's googly eyes somehow convey longing. Pepper spray canister dropped and forgotten in puddle between them.</p>
-                    <p><strong>Text Overlay:</strong></p>
-                    <p>"They said it could never work"<br>
-                    "He was sworn to maintain order"<br>
-                    "She was born to resist"<br>
-                    "But love... love is inflatable"</p>
-                    <p><strong>Tagline:</strong> "If you love something, set it free. If it bounces back, it's probably an inflatable frog."</p>
+                    <h2>🎬 THE FROG AND THE FED</h2>
+                    <h3><em>The Notebook Style</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🎭 Director's Commentary</h4>
+                        <p><em>"We knew we had to nail the rain scene. After 47 takes and three different sprinkler systems, we finally captured that perfect moment of googly-eyed vulnerability."</em></p>
+                        <p><strong>- Director, probably</strong></p>
+                    </div>
+
+                    <h4>💬 Memorable Quotes</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "If you love something, set it free. If it bounces back, it's probably an inflatable frog."
+                    </blockquote>
+
+                    <h4>🎬 Production Notes</h4>
+                    <ul>
+                        <li><strong>Weather Challenges:</strong> Real Portland rain wasn't dramatic enough, so they added three fog machines</li>
+                        <li><strong>Costume Design:</strong> Federal agent's tactical gear sourced from actual protest surplus</li>
+                        <li><strong>Location:</strong> Filmed on location in Tom McCall Waterfront Park (with permits, surprisingly)</li>
+                        <li><strong>Special Effects:</strong> The frog's emotional range was achieved through strategic googly eye placement</li>
+                    </ul>
+
+                    <div style="background: var(--accent); color: white; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                        <strong>🏆 Awards Season Buzz:</strong> "Best Use of Inflatable Props in a Dramatic Romance" - Portland Film Critics Circle (probably)
+                    </div>
                 `,
                 sally: `
-                    <h2>WHEN RIOT MET SALLY</h2>
-                    <p><strong>Visual Description:</strong></p>
-                    <p>Split-screen diner scene aesthetic. Left side: Federal agent in full tactical gear sitting at cafe table with coffee. Right side: Green inflatable frog sitting across from him, comically squeezed into booth. Soft focus romantic lighting. Portland's Voodoo Doughnut visible through window behind them.</p>
-                    <p><strong>Quote:</strong> "I'll have what she's having" - Woman watching frog bounce past her table</p>
+                    <h2>🎬 WHEN RIOT MET SALLY</h2>
+                    <h3><em>A Rom-Com for the Ages</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🎭 Behind the Scenes</h4>
+                        <p><em>"The hardest part was getting the frog to stay in character during the diner scene. We went through 12 donuts just for the background shot."</em></p>
+                        <p><strong>- Craft Services Coordinator</strong></p>
+                    </div>
+
+                    <h4>💬 Classic Lines</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "I'll have what she's having."<br>
+                        <small>- Woman watching frog bounce past her table</small>
+                    </blockquote>
+
+                    <h4>🍩 Portland Product Placement</h4>
+                    <ul>
+                        <li><strong>Voodoo Doughnut:</strong> Visible in 47% of frames (contractual obligation)</li>
+                        <li><strong>Stumptown Coffee:</strong> The fed's drink of choice</li>
+                        <li><strong>Powell's Books:</strong> Frog's backstory involves a radical reading list</li>
+                    </ul>
+
+                    <div style="background: #e8f5e8; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                        <strong>🎪 Fun Fact:</strong> The "split-screen" effect was actually achieved by putting a mirror down the middle of the table. The frog kept getting confused by its reflection.
+                    </div>
+                `,
+                titanic: `
+                    <h2>🎬 TITANIC: PORTLAND STORY</h2>
+                    <h3><em>Epic Romance Meets Tactical Response</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🌉 Location, Location, Location</h4>
+                        <p><em>"We considered the Burnside Bridge, but the Steel Bridge just had that 'doomed ocean liner' aesthetic we were looking for."</em></p>
+                        <p><strong>- Location Manager</strong></p>
+                    </div>
+
+                    <h4>💬 Iconic Moment</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "Draw me like one of your French frogs"<br>
+                        <small>- Definitely not what was actually said, but what we all heard</small>
+                    </blockquote>
+
+                    <h4>🎬 Technical Innovations</h4>
+                    <ul>
+                        <li><strong>Sinking Effect:</strong> ICE facility model sank convincingly (3rd take)</li>
+                        <li><strong>Wind Machine:</strong> Borrowed from a local car dealership's grand opening</li>
+                        <li><strong>Safety Protocols:</strong> Three lifeguards on standby (none needed, thankfully)</li>
+                    </ul>
+                `,
+                star: `
+                    <h2>🎬 A STAR IS INFLATED</h2>
+                    <h3><em>Musical Drama Meets Protest Movement</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🎤 Musical Direction</h4>
+                        <p><em>"The frog's vocal range was surprisingly limited, but what it lacked in pitch, it made up for in authentic squeaking."</em></p>
+                        <p><strong>- Sound Engineer</strong></p>
+                    </div>
+
+                    <h4>💬 Song Highlights</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        🎵 "Maybe it's time to let the old ways die... and try inflatable resistance" 🎵
+                    </blockquote>
+
+                    <h4>🎭 Supporting Cast</h4>
+                    <ul>
+                        <li><strong>Banana Bloc Band:</strong> Provided backup music and moral support</li>
+                        <li><strong>Audience Extras:</strong> 200 actual Portland residents (paid in coffee)</li>
+                        <li><strong>Stage Manager:</strong> Former circus performer (inflatable animal experience required)</li>
+                    </ul>
+                `,
+                fault: `
+                    <h2>🎬 THE FAULT IN OUR TEARGAS</h2>
+                    <h3><em>Young Adult Romance Meets Constitutional Crisis</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>💨 Special Effects Challenge</h4>
+                        <p><em>"Making tear gas clouds form a heart shape required wind machines, colored smoke, and three meteorology consultants."</em></p>
+                        <p><strong>- VFX Supervisor</strong></p>
+                    </div>
+
+                    <h4>💬 Tender Moments</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "Okay?"<br>
+                        "Okay."<br>
+                        <small>- The most emotionally devastating exchange in protest cinema</small>
+                    </blockquote>
+
+                    <h4>🎭 Emotional Depth</h4>
+                    <ul>
+                        <li><strong>Googly Eye Acting:</strong> Revolutionary technique for inflatable performers</li>
+                        <li><strong>Mask Removal Scene:</strong> Fed's vulnerable moment, take 23</li>
+                        <li><strong>Symbolic Imagery:</strong> Some infinities really are inflatable</li>
+                    </ul>
+                `,
+                pride: `
+                    <h2>🎬 PRIDE AND PEPPER SPRAY</h2>
+                    <h3><em>Period Drama Meets Modern Protest</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🎭 Jane Austen's Vision</h4>
+                        <p><em>"We asked ourselves: What would happen if Mr. Darcy was a federal agent and Elizabeth Bennet was an inflatable frog?"</em></p>
+                        <p><strong>- Literary Consultant</strong></p>
+                    </div>
+
+                    <h4>💬 Regency Romance Dialogue</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "You have bewitched me, body and googly-eyed soul, and I love, I love, I love you."
+                    </blockquote>
+
+                    <h4>🏛️ Constitutional Drama</h4>
+                    <ul>
+                        <li><strong>Period Costumes:</strong> Tactical gear meets Empire waistlines</li>
+                        <li><strong>Ballroom Scene:</strong> Portland park transformed with string quartet</li>
+                        <li><strong>Class Commentary:</strong> Federal agents vs. inflatable protesters</li>
+                    </ul>
+                `,
+                eternal: `
+                    <h2>🎬 ETERNAL SUNSHINE OF THE SPOTLESS PROTEST</h2>
+                    <h3><em>Surreal Memory Drama</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🌪️ Memory Landscapes</h4>
+                        <p><em>"We literally erased Portland landmarks during filming. The city planning department was not amused."</em></p>
+                        <p><strong>- Set Designer</strong></p>
+                    </div>
+
+                    <h4>💬 Mind-Bending Dialogue</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "Meet me in Portland... in the memory hole where protests become love stories."
+                    </blockquote>
+
+                    <h4>🧠 Conceptual Challenges</h4>
+                    <ul>
+                        <li><strong>Floating Objects:</strong> Everything had to look weightless and dreamlike</li>
+                        <li><strong>Timeline Confusion:</strong> Editor quit halfway through</li>
+                        <li><strong>Reality Bending:</strong> Audiences still confused about what actually happened</li>
+                    </ul>
+                `,
+                lady: `
+                    <h2>🎬 LADY AND THE TACTICAL RESPONSE</h2>
+                    <h3><em>Disney Classic Gets Political</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🍝 The Spaghetti Scene</h4>
+                        <p><em>"We went through 47 pounds of spaghetti. The frog kept deflating from sauce weight."</em></p>
+                        <p><strong>- Food Stylist</strong></p>
+                    </div>
+
+                    <h4>💬 Romantic Dining</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "Bella notte... full of tear gas, but still somehow romantic."
+                    </blockquote>
+
+                    <h4>🎵 Musical Numbers</h4>
+                    <ul>
+                        <li><strong>Accordion Player:</strong> Member of Banana Bloc provided authentic atmosphere</li>
+                        <li><strong>Italian Lighting:</strong> Romantic despite nearby federal vehicles</li>
+                        <li><strong>Banner Kiss:</strong> Most unusual shared spaghetti substitute in cinema</li>
+                    </ul>
+                `,
+                ghost: `
+                    <h2>🎬 GHOST: THE PORTLAND CUT</h2>
+                    <h3><em>Supernatural Romance Meets Crafts & Resistance</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🏺 The Pottery Scene</h4>
+                        <p><em>"Instead of a pottery wheel, we used a protest sign-making station. Much more authentic to the Portland experience."</em></p>
+                        <p><strong>- Props Master</strong></p>
+                    </div>
+
+                    <h4>💬 Spiritual Connection</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "Ditto"<br>
+                        <small>- The Frog's most profound philosophical statement</small>
+                    </blockquote>
+
+                    <h4>🎨 Artistic Elements</h4>
+                    <ul>
+                        <li><strong>Bob Ross Cameo:</strong> Painting visible in background (estate approved)</li>
+                        <li><strong>Clay Molding:</strong> Protest signs shaped like declarations of love</li>
+                        <li><strong>Unchained Melody:</strong> Played on kazoos by Banana Bloc</li>
+                    </ul>
+                `,
+                fifty: `
+                    <h2>🎬 FIFTY SHADES OF TACTICAL GREY</h2>
+                    <h3><em>Power Dynamics in Federal Protest Response</em></h3>
+
+                    <div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🏢 The Red Room (Protest Zone)</h4>
+                        <p><em>"We had to balance the steamy atmosphere with constitutional law. The legal consultants were... interesting."</em></p>
+                        <p><strong>- Director of Photography</strong></p>
+                    </div>
+
+                    <h4>💬 Power Exchange</h4>
+                    <blockquote style="border-left: 4px solid var(--primary); padding-left: 20px; margin: 20px 0; font-style: italic;">
+                        "Mr. Fed will see you now... in the protest zone."
+                    </blockquote>
+
+                    <h4>⛓️ Boundary Exploration</h4>
+                    <ul>
+                        <li><strong>Safe Words:</strong> "Constitution" and "First Amendment"</li>
+                        <li><strong>Power Dynamics:</strong> Federal authority vs. inflatable resistance</li>
+                        <li><strong>Pepper Spray Prop:</strong> Suspended suggestively but never used</li>
+                    </ul>
+
+                    <div style="background: #333; color: white; padding: 15px; border-radius: 10px; margin: 20px 0;">
+                        <strong>⚠️ Disclaimer:</strong> No inflatable frogs were harmed in the making of this film. All googly eyes consented.
+                    </div>
                 `
-                // Add more poster details as needed
             };
-            
-            modalBody.innerHTML = posterDetails[posterId] || '<p>Coming soon!</p>';
+
+            // Set poster image
+            modalPosterImg.src = posterAssets[posterId] || '';
+            modalPosterImg.alt = `${posterId} movie poster`;
+
+            // Set emoji scene
+            const scene = emojiScenes[posterId];
+            if (scene) {
+                emojiScene.innerHTML = scene.html;
+                sceneCaption.textContent = scene.caption;
+            }
+
+            // Set rich content
+            modalBody.innerHTML = richContent[posterId] || '<p>🎬 Coming soon to a protest near you!</p>';
+
+            // Show modal
             modal.classList.add('active');
         }
 
