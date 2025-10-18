@@ -1267,6 +1267,328 @@
             }
         }
 
+        /* Easter Egg Styles */
+        .easter-egg-notification {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff6b35, #f59e0b);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+            z-index: 10000;
+            transform: translateX(400px);
+            transition: transform 0.5s ease;
+            max-width: 300px;
+        }
+
+        .easter-egg-notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .notification-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .notification-description {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .notification-progress {
+            font-size: 0.8rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 10px;
+        }
+
+        .easter-egg-modal {
+            max-width: 600px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .easter-egg-modal h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .discovery-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .discovery-item {
+            display: grid;
+            grid-template-columns: 50px 1fr;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            align-items: center;
+        }
+
+        .discovery-item.discovered {
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #ffd700;
+        }
+
+        .discovery-icon {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .discovery-name {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .discovery-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .easter-egg-hints {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .easter-egg-hints h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .easter-egg-hints ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .easter-egg-hints li {
+            margin-bottom: 8px;
+            opacity: 0.9;
+        }
+
+        .tracker-separator {
+            margin: 0 8px;
+            opacity: 0.5;
+        }
+
+        .stats-btn {
+            cursor: pointer;
+            text-decoration: underline;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .stats-btn:hover {
+            opacity: 1;
+        }
+
+        /* Engagement Dashboard Styles */
+        .engagement-modal {
+            max-width: 800px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border-radius: 20px;
+        }
+
+        .engagement-modal h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .engagement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .engagement-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .engagement-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-bottom: 8px;
+        }
+
+        .engagement-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .engagement-breakdown,
+        .engagement-activity {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .engagement-breakdown h3,
+        .engagement-activity h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .time-breakdown-item {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 15px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-name {
+            font-weight: 600;
+        }
+
+        .time-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .time-fill {
+            background: linear-gradient(90deg, #ffd700, #f59e0b);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .time-value {
+            text-align: right;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .activity-item {
+            display: grid;
+            grid-template-columns: 30px 1fr auto;
+            gap: 12px;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-emoji {
+            font-size: 1.2rem;
+        }
+
+        .activity-description {
+            font-size: 0.9rem;
+        }
+
+        .activity-time {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .no-activity {
+            text-align: center;
+            opacity: 0.7;
+            padding: 20px;
+            font-style: italic;
+        }
+
+        .engagement-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .engagement-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .engagement-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .engagement-btn.reset {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+
+        .engagement-btn.reset:hover {
+            box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .easter-egg-notification {
+                right: 10px;
+                left: 10px;
+                max-width: none;
+                transform: translateY(-400px);
+            }
+
+            .easter-egg-notification.show {
+                transform: translateY(0);
+            }
+
+            #easter-egg-tracker {
+                top: 10px !important;
+                right: 10px !important;
+                font-size: 0.8rem !important;
+            }
+
+            .engagement-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .time-breakdown-item {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                text-align: center;
+            }
+
+            .engagement-actions {
+                flex-direction: column;
+            }
+        }
+
         /* Footer */
         footer {
             background: rgba(0,0,0,0.9);
@@ -3158,23 +3480,312 @@ Level 4: National Guard for twerking unicorns</code>
                     interactions: [],
                     timeSpent: {},
                     modesExplored: new Set(),
-                    storiesViewed: new Set()
+                    storiesViewed: new Set(),
+                    sessionStart: Date.now(),
+                    totalVisits: parseInt(localStorage.getItem('totalVisits') || '0') + 1,
+                    returningUser: localStorage.getItem('timelineAnalytics') !== null
                 };
+
+                // Track page sections visited
+                this.setupSectionTracking();
+
+                // Track time spent on site
+                this.setupTimeTracking();
+
+                // Save visit count
+                localStorage.setItem('totalVisits', this.analytics.totalVisits.toString());
+            }
+
+            setupSectionTracking() {
+                const sections = ['hero', 'posters', 'quotes', 'story', 'meme-generator', 'memes', 'stats'];
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            this.trackInteraction('section_viewed', {
+                                section: entry.target.id,
+                                timestamp: Date.now()
+                            });
+                        }
+                    });
+                }, { threshold: 0.3 });
+
+                sections.forEach(sectionId => {
+                    const element = document.getElementById(sectionId);
+                    if (element) observer.observe(element);
+                });
+            }
+
+            setupTimeTracking() {
+                // Track time spent in different sections
+                let currentSection = null;
+                let sectionStartTime = Date.now();
+
+                const updateTimeSpent = (section) => {
+                    if (currentSection) {
+                        this.analytics.timeSpent[currentSection] =
+                            (this.analytics.timeSpent[currentSection] || 0) +
+                            (Date.now() - sectionStartTime);
+                    }
+                    currentSection = section;
+                    sectionStartTime = Date.now();
+                };
+
+                // Track scroll position to determine current section
+                window.addEventListener('scroll', () => {
+                    const sections = ['hero', 'posters', 'quotes', 'story', 'meme-generator', 'memes', 'stats'];
+                    const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+                    for (const sectionId of sections) {
+                        const element = document.getElementById(sectionId);
+                        if (element) {
+                            const rect = element.getBoundingClientRect();
+                            const absoluteTop = window.scrollY + rect.top;
+                            const absoluteBottom = absoluteTop + rect.height;
+
+                            if (scrollPosition >= absoluteTop && scrollPosition <= absoluteBottom) {
+                                if (currentSection !== sectionId) {
+                                    updateTimeSpent(sectionId);
+                                }
+                                break;
+                            }
+                        }
+                    }
+                });
+
+                // Save time data on page unload
+                window.addEventListener('beforeunload', () => {
+                    updateTimeSpent(null);
+                    this.saveAnalyticsData();
+                });
+
+                // Periodic save
+                setInterval(() => {
+                    this.saveAnalyticsData();
+                }, 30000); // Save every 30 seconds
             }
 
             trackInteraction(type, data) {
                 this.analytics.interactions.push({
                     type,
                     data,
-                    timestamp: Date.now()
+                    timestamp: Date.now(),
+                    sessionId: this.getSessionId()
                 });
 
                 if (type === 'mode_change') {
                     this.analytics.modesExplored.add(data);
                 }
 
+                if (type === 'story_opened') {
+                    this.analytics.storiesViewed.add(data.storyId);
+                }
+
                 // Store in localStorage for persistence
-                localStorage.setItem('timelineAnalytics', JSON.stringify(this.analytics));
+                this.saveAnalyticsData();
+
+                // Send to engagement dashboard if enabled
+                this.updateEngagementDashboard();
+            }
+
+            getSessionId() {
+                if (!this.sessionId) {
+                    this.sessionId = 'session_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                }
+                return this.sessionId;
+            }
+
+            saveAnalyticsData() {
+                const analyticsData = {
+                    ...this.analytics,
+                    modesExplored: Array.from(this.analytics.modesExplored),
+                    storiesViewed: Array.from(this.analytics.storiesViewed),
+                    lastUpdated: Date.now()
+                };
+                localStorage.setItem('timelineAnalytics', JSON.stringify(analyticsData));
+            }
+
+            updateEngagementDashboard() {
+                // Update real-time engagement metrics
+                if (document.getElementById('engagement-dashboard')) {
+                    this.refreshDashboard();
+                }
+            }
+
+            showEngagementDashboard() {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.style.display = 'block';
+                modal.innerHTML = `
+                    <div class="modal-content engagement-modal">
+                        <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
+                        <h2>📊 Your Engagement Stats</h2>
+                        <div id="engagement-dashboard">
+                            ${this.generateDashboardHTML()}
+                        </div>
+                        <div class="engagement-actions">
+                            <button onclick="window.timelineSystem.exportAnalytics()" class="engagement-btn">
+                                📁 Export Data
+                            </button>
+                            <button onclick="window.timelineSystem.resetAnalytics()" class="engagement-btn reset">
+                                🗑️ Reset Stats
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            generateDashboardHTML() {
+                const totalTimeSpent = Object.values(this.analytics.timeSpent).reduce((a, b) => a + b, 0);
+                const totalInteractions = this.analytics.interactions.length;
+                const sessionsToday = this.analytics.totalVisits;
+
+                return `
+                    <div class="engagement-grid">
+                        <div class="engagement-card">
+                            <div class="engagement-number">${Math.round(totalTimeSpent / 1000 / 60)}m</div>
+                            <div class="engagement-label">Time Spent</div>
+                        </div>
+                        <div class="engagement-card">
+                            <div class="engagement-number">${totalInteractions}</div>
+                            <div class="engagement-label">Interactions</div>
+                        </div>
+                        <div class="engagement-card">
+                            <div class="engagement-number">${sessionsToday}</div>
+                            <div class="engagement-label">Total Visits</div>
+                        </div>
+                        <div class="engagement-card">
+                            <div class="engagement-number">${this.analytics.modesExplored.size}/3</div>
+                            <div class="engagement-label">Modes Explored</div>
+                        </div>
+                        <div class="engagement-card">
+                            <div class="engagement-number">${this.analytics.storiesViewed.size}</div>
+                            <div class="engagement-label">Stories Viewed</div>
+                        </div>
+                        <div class="engagement-card">
+                            <div class="engagement-number">${this.analytics.returningUser ? 'Yes' : 'No'}</div>
+                            <div class="engagement-label">Returning User</div>
+                        </div>
+                    </div>
+                    <div class="engagement-breakdown">
+                        <h3>🎯 Time by Section</h3>
+                        ${this.generateTimeBreakdown()}
+                    </div>
+                    <div class="engagement-activity">
+                        <h3>🔥 Recent Activity</h3>
+                        ${this.generateActivityFeed()}
+                    </div>
+                `;
+            }
+
+            generateTimeBreakdown() {
+                const sectionNames = {
+                    hero: 'Hero Section',
+                    posters: 'Movie Posters',
+                    quotes: 'Quotes',
+                    story: 'Interactive Timeline',
+                    'meme-generator': 'Meme Generator',
+                    memes: 'Meme Templates',
+                    stats: 'Statistics'
+                };
+
+                const totalTime = Object.values(this.analytics.timeSpent).reduce((a, b) => a + b, 0);
+
+                return Object.entries(this.analytics.timeSpent)
+                    .sort(([,a], [,b]) => b - a)
+                    .map(([section, time]) => {
+                        const percentage = totalTime > 0 ? Math.round((time / totalTime) * 100) : 0;
+                        const minutes = Math.round(time / 1000 / 60);
+                        return `
+                            <div class="time-breakdown-item">
+                                <div class="section-name">${sectionNames[section] || section}</div>
+                                <div class="time-bar">
+                                    <div class="time-fill" style="width: ${percentage}%"></div>
+                                </div>
+                                <div class="time-value">${minutes}m (${percentage}%)</div>
+                            </div>
+                        `;
+                    }).join('');
+            }
+
+            generateActivityFeed() {
+                const recentActivities = this.analytics.interactions
+                    .slice(-10)
+                    .reverse()
+                    .map(activity => {
+                        const time = new Date(activity.timestamp).toLocaleTimeString();
+                        const actionEmojis = {
+                            mode_change: '🔄',
+                            story_opened: '📖',
+                            character_explored: '👤',
+                            meme_generated: '🎨',
+                            meme_downloaded: '💾',
+                            easter_egg_discovered: '🥚',
+                            section_viewed: '👁️'
+                        };
+
+                        const emoji = actionEmojis[activity.type] || '🔹';
+                        const description = this.getActivityDescription(activity);
+
+                        return `
+                            <div class="activity-item">
+                                <span class="activity-emoji">${emoji}</span>
+                                <span class="activity-description">${description}</span>
+                                <span class="activity-time">${time}</span>
+                            </div>
+                        `;
+                    }).join('');
+
+                return recentActivities || '<div class="no-activity">No recent activity</div>';
+            }
+
+            getActivityDescription(activity) {
+                switch (activity.type) {
+                    case 'mode_change':
+                        return `Switched to ${activity.data} mode`;
+                    case 'story_opened':
+                        return `Opened ${activity.data.storyId} story`;
+                    case 'character_explored':
+                        return `Explored ${activity.data} character`;
+                    case 'meme_generated':
+                        return `Generated ${activity.data.template} meme`;
+                    case 'meme_downloaded':
+                        return `Downloaded meme`;
+                    case 'easter_egg_discovered':
+                        return `Found "${activity.data.name}" easter egg`;
+                    case 'section_viewed':
+                        return `Viewed ${activity.data.section} section`;
+                    default:
+                        return `${activity.type} interaction`;
+                }
+            }
+
+            exportAnalytics() {
+                const data = {
+                    ...this.analytics,
+                    modesExplored: Array.from(this.analytics.modesExplored),
+                    storiesViewed: Array.from(this.analytics.storiesViewed),
+                    exportedAt: new Date().toISOString()
+                };
+
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `frog-fed-analytics-${Date.now()}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+
+                this.trackInteraction('analytics_exported', { timestamp: Date.now() });
+            }
+
+            resetAnalytics() {
+                if (confirm('Are you sure you want to reset all analytics data? This cannot be undone.')) {
+                    localStorage.removeItem('timelineAnalytics');
+                    localStorage.removeItem('totalVisits');
+                    localStorage.removeItem('easterEggDiscoveries');
+                    location.reload();
+                }
             }
         }
 
@@ -3762,6 +4373,443 @@ Level 4: National Guard for twerking unicorns</code>
             }
         }
 
+        // Easter Egg System
+        class EasterEggSystem {
+            constructor() {
+                this.discoveries = JSON.parse(localStorage.getItem('easterEggDiscoveries') || '[]');
+                this.sequences = this.initializeSequences();
+                this.clickCounts = {};
+                this.secretMode = false;
+                this.init();
+            }
+
+            init() {
+                this.setupClickTracking();
+                this.setupKeySequences();
+                this.createDiscoveryTracker();
+                this.checkForSecretUnlocks();
+            }
+
+            initializeSequences() {
+                return {
+                    konami: {
+                        sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA'],
+                        name: 'Konami Code',
+                        reward: 'secretMode',
+                        description: 'Unlock secret frog transformation mode!'
+                    },
+                    frogLove: {
+                        sequence: ['🐸', '💕', '👮‍♂️', '💕', '🐸'],
+                        name: 'Love Sequence',
+                        reward: 'romanticMode',
+                        description: 'Activate romantic particle effects!'
+                    },
+                    spicy: {
+                        sequence: ['KeyS', 'KeyP', 'KeyI', 'KeyC', 'KeyY'],
+                        name: 'Spicy Code',
+                        reward: 'spicyMode',
+                        description: 'Everything becomes pepper spray themed!'
+                    }
+                };
+            }
+
+            setupClickTracking() {
+                // Track clicks on specific elements
+                document.addEventListener('click', (e) => {
+                    const element = e.target;
+
+                    // Frog emoji clicks
+                    if (element.textContent && element.textContent.includes('🐸')) {
+                        this.handleFrogClick(element);
+                    }
+
+                    // Hero poster clicks
+                    if (element.closest('#heroPoster')) {
+                        this.handlePosterClick();
+                    }
+
+                    // Timeline emoji clicks
+                    if (element.classList.contains('timeline-emoji')) {
+                        this.handleTimelineEmojiClick(element);
+                    }
+
+                    // Stats card clicks
+                    if (element.closest('.stat-card')) {
+                        this.handleStatsClick(element.closest('.stat-card'));
+                    }
+                });
+            }
+
+            setupKeySequences() {
+                let keySequence = [];
+                let emojiSequence = [];
+
+                document.addEventListener('keydown', (e) => {
+                    keySequence.push(e.code);
+                    if (keySequence.length > 10) keySequence.shift();
+
+                    this.checkSequences(keySequence, 'key');
+                });
+
+                // Track emoji inputs from meme generator
+                document.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('emoji-btn')) {
+                        emojiSequence.push(e.target.textContent);
+                        if (emojiSequence.length > 5) emojiSequence.shift();
+
+                        this.checkSequences(emojiSequence, 'emoji');
+                    }
+                });
+            }
+
+            checkSequences(sequence, type) {
+                Object.entries(this.sequences).forEach(([key, seq]) => {
+                    const targetSequence = type === 'emoji' ? seq.sequence.filter(s => s.includes('🐸') || s.includes('💕') || s.includes('👮‍♂️')) : seq.sequence.filter(s => s.startsWith('Key') || s.startsWith('Arrow'));
+
+                    if (targetSequence.length === 0) return;
+
+                    const matches = targetSequence.every((item, index) => {
+                        return sequence[sequence.length - targetSequence.length + index] === item;
+                    });
+
+                    if (matches && !this.discoveries.includes(key)) {
+                        this.unlockEasterEgg(key, seq);
+                    }
+                });
+            }
+
+            handleFrogClick(element) {
+                this.clickCounts.frog = (this.clickCounts.frog || 0) + 1;
+
+                // Easter egg at 10 clicks
+                if (this.clickCounts.frog === 10) {
+                    this.unlockEasterEgg('frogLover', {
+                        name: 'Frog Enthusiast',
+                        reward: 'frogParty',
+                        description: 'You really love frogs! 🐸'
+                    });
+                }
+
+                // Create floating emoji
+                this.createFloatingEmoji('🐸', element);
+            }
+
+            handlePosterClick() {
+                this.clickCounts.poster = (this.clickCounts.poster || 0) + 1;
+
+                if (this.clickCounts.poster === 5) {
+                    this.unlockEasterEgg('posterFan', {
+                        name: 'Poster Collector',
+                        reward: 'posterGallery',
+                        description: 'Unlock hidden poster variants!'
+                    });
+                }
+            }
+
+            handleTimelineEmojiClick(element) {
+                const emoji = element.textContent;
+                this.createFloatingEmoji(emoji, element);
+
+                // Secret timeline progression
+                this.clickCounts.timeline = (this.clickCounts.timeline || 0) + 1;
+                if (this.clickCounts.timeline === 6) { // One for each timeline item
+                    this.unlockEasterEgg('timelineMaster', {
+                        name: 'Timeline Master',
+                        reward: 'secretTimeline',
+                        description: 'Unlock the secret timeline ending!'
+                    });
+                }
+            }
+
+            handleStatsClick(card) {
+                const statNumber = card.querySelector('.stat-number').textContent;
+
+                // Special handling for specific stats
+                if (statNumber === '∞') {
+                    this.unlockEasterEgg('infinite', {
+                        name: 'Infinite Explorer',
+                        reward: 'infiniteMode',
+                        description: 'You found the infinite meme potential!'
+                    });
+                }
+            }
+
+            unlockEasterEgg(id, easterEgg) {
+                if (this.discoveries.includes(id)) return;
+
+                this.discoveries.push(id);
+                localStorage.setItem('easterEggDiscoveries', JSON.stringify(this.discoveries));
+
+                // Show discovery notification
+                this.showDiscoveryNotification(easterEgg);
+
+                // Activate the reward
+                this.activateReward(easterEgg.reward);
+
+                // Track discovery
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('easter_egg_discovered', {
+                        eggId: id,
+                        name: easterEgg.name
+                    });
+                }
+            }
+
+            showDiscoveryNotification(easterEgg) {
+                const notification = document.createElement('div');
+                notification.className = 'easter-egg-notification';
+                notification.innerHTML = `
+                    <div class="notification-content">
+                        <div class="notification-title">🥚 Easter Egg Discovered!</div>
+                        <div class="notification-name">${easterEgg.name}</div>
+                        <div class="notification-description">${easterEgg.description}</div>
+                        <div class="notification-progress">${this.discoveries.length}/10 discovered</div>
+                    </div>
+                `;
+
+                document.body.appendChild(notification);
+
+                // Animate in
+                setTimeout(() => notification.classList.add('show'), 100);
+
+                // Remove after delay
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 500);
+                }, 4000);
+            }
+
+            activateReward(rewardType) {
+                switch (rewardType) {
+                    case 'secretMode':
+                        this.activateSecretMode();
+                        break;
+                    case 'romanticMode':
+                        this.activateRomanticMode();
+                        break;
+                    case 'spicyMode':
+                        this.activateSpicyMode();
+                        break;
+                    case 'frogParty':
+                        this.activateFrogParty();
+                        break;
+                    case 'infiniteMode':
+                        this.activateInfiniteMode();
+                        break;
+                }
+            }
+
+            activateSecretMode() {
+                this.secretMode = true;
+                document.body.classList.add('secret-mode');
+
+                // Add secret style elements
+                const style = document.createElement('style');
+                style.id = 'secret-mode-styles';
+                style.textContent = `
+                    .secret-mode .timeline-emoji {
+                        animation: secretSpin 2s linear infinite !important;
+                    }
+                    .secret-mode .hero h1 {
+                        background: linear-gradient(45deg, #ff6b35, #f59e0b, #10b981, #3b82f6);
+                        background-size: 400% 400%;
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        animation: secretGradient 3s ease infinite;
+                    }
+                    @keyframes secretSpin {
+                        from { transform: rotate(0deg) scale(1); }
+                        to { transform: rotate(360deg) scale(1.2); }
+                    }
+                    @keyframes secretGradient {
+                        0%, 100% { background-position: 0% 50%; }
+                        50% { background-position: 100% 50%; }
+                    }
+                `;
+                document.head.appendChild(style);
+
+                setTimeout(() => {
+                    document.body.classList.remove('secret-mode');
+                    document.getElementById('secret-mode-styles')?.remove();
+                }, 10000);
+            }
+
+            activateRomanticMode() {
+                // Create floating hearts
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        this.createFloatingEmoji('💕', document.body, {
+                            x: Math.random() * window.innerWidth,
+                            y: window.innerHeight,
+                            duration: 3000
+                        });
+                    }, i * 200);
+                }
+            }
+
+            activateSpicyMode() {
+                // Replace all emojis temporarily with pepper spray
+                const originalEmojis = [];
+                document.querySelectorAll('.timeline-emoji, .stat-emoji-celebration').forEach(el => {
+                    originalEmojis.push({ element: el, original: el.textContent });
+                    el.textContent = '🌶️';
+                });
+
+                setTimeout(() => {
+                    originalEmojis.forEach(({ element, original }) => {
+                        element.textContent = original;
+                    });
+                }, 5000);
+            }
+
+            activateFrogParty() {
+                // Massive frog explosion
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        this.createFloatingEmoji('🐸', document.body, {
+                            x: Math.random() * window.innerWidth,
+                            y: Math.random() * window.innerHeight,
+                            duration: 2000,
+                            size: Math.random() * 3 + 1
+                        });
+                    }, i * 100);
+                }
+            }
+
+            activateInfiniteMode() {
+                // Show secret message
+                alert('🌌 You\'ve reached infinite meme potential! Reality is now optional. The frogs have achieved enlightenment. 🐸∞');
+            }
+
+            createFloatingEmoji(emoji, sourceElement, options = {}) {
+                const floater = document.createElement('div');
+                floater.className = 'floating-easter-emoji';
+                floater.textContent = emoji;
+
+                const rect = sourceElement.getBoundingClientRect();
+                const startX = options.x !== undefined ? options.x : rect.left + rect.width / 2;
+                const startY = options.y !== undefined ? options.y : rect.top + rect.height / 2;
+
+                floater.style.cssText = `
+                    position: fixed;
+                    left: ${startX}px;
+                    top: ${startY}px;
+                    font-size: ${(options.size || 1) * 2}rem;
+                    pointer-events: none;
+                    z-index: 9999;
+                    transition: all ${options.duration || 1500}ms ease-out;
+                `;
+
+                document.body.appendChild(floater);
+
+                // Animate
+                setTimeout(() => {
+                    floater.style.transform = `translate(${(Math.random() - 0.5) * 200}px, -100px) rotate(360deg)`;
+                    floater.style.opacity = '0';
+                }, 50);
+
+                // Remove
+                setTimeout(() => floater.remove(), options.duration || 1500);
+            }
+
+            createDiscoveryTracker() {
+                // Add discovery counter to UI
+                const tracker = document.createElement('div');
+                tracker.id = 'easter-egg-tracker';
+                tracker.innerHTML = `
+                    <div class="tracker-content">
+                        🥚 <span id="discovery-count">${this.discoveries.length}</span>/10
+                        <span class="tracker-separator">|</span>
+                        📊 <span class="stats-btn" onclick="event.stopPropagation(); window.timelineSystem.showEngagementDashboard()">Stats</span>
+                    </div>
+                `;
+                tracker.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: rgba(0,0,0,0.8);
+                    color: white;
+                    padding: 10px 15px;
+                    border-radius: 20px;
+                    font-size: 0.9rem;
+                    z-index: 1000;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                `;
+
+                tracker.addEventListener('click', () => this.showDiscoveryList());
+                document.body.appendChild(tracker);
+            }
+
+            showDiscoveryList() {
+                const modal = document.createElement('div');
+                modal.className = 'modal';
+                modal.style.display = 'block';
+                modal.innerHTML = `
+                    <div class="modal-content easter-egg-modal">
+                        <span class="close" onclick="this.closest('.modal').remove()">&times;</span>
+                        <h2>🥚 Easter Egg Collection</h2>
+                        <div class="discovery-grid">
+                            ${this.generateDiscoveryList()}
+                        </div>
+                        <div class="easter-egg-hints">
+                            <h3>💡 Hints for Hidden Eggs:</h3>
+                            <ul>
+                                <li>Try clicking on frogs... a lot 🐸</li>
+                                <li>Use the meme generator emoji palette creatively 🎨</li>
+                                <li>Explore the timeline thoroughly 📅</li>
+                                <li>Some stats are more special than others ∞</li>
+                                <li>Old school gamers know secret codes... ⬆️⬆️⬇️⬇️</li>
+                            </ul>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            generateDiscoveryList() {
+                const allEggs = {
+                    frogLover: { name: 'Frog Enthusiast', description: 'Click frogs 10 times' },
+                    posterFan: { name: 'Poster Collector', description: 'Click the hero poster 5 times' },
+                    timelineMaster: { name: 'Timeline Master', description: 'Click all timeline emojis' },
+                    infinite: { name: 'Infinite Explorer', description: 'Find the infinite stat' },
+                    konami: { name: 'Secret Code Master', description: 'Enter the classic code' },
+                    frogLove: { name: 'Love Sequence', description: 'Use emoji sequence correctly' },
+                    spicy: { name: 'Spicy Code', description: 'Type the spicy word' }
+                };
+
+                return Object.entries(allEggs).map(([id, egg]) => {
+                    const discovered = this.discoveries.includes(id);
+                    return `
+                        <div class="discovery-item ${discovered ? 'discovered' : 'hidden'}">
+                            <div class="discovery-icon">${discovered ? '✅' : '❓'}</div>
+                            <div class="discovery-name">${discovered ? egg.name : '???'}</div>
+                            <div class="discovery-description">${discovered ? egg.description : 'Keep exploring...'}</div>
+                        </div>
+                    `;
+                }).join('');
+            }
+
+            checkForSecretUnlocks() {
+                // Unlock special features based on discovery count
+                if (this.discoveries.length >= 5) {
+                    // Unlock special meme template
+                    if (window.memeGenerator) {
+                        // Add secret template
+                    }
+                }
+
+                if (this.discoveries.length >= 10) {
+                    // Unlock ultimate secret
+                    this.unlockUltimateSecret();
+                }
+            }
+
+            unlockUltimateSecret() {
+                alert('🎉 CONGRATULATIONS! You\'ve found all easter eggs! You are now officially a Frog & Fed Master Explorer! 🐸👮‍♂️💕');
+            }
+        }
+
         // Initialize systems when page loads
         window.addEventListener('load', () => {
             // Initialize timeline system
@@ -3769,6 +4817,9 @@ Level 4: National Guard for twerking unicorns</code>
 
             // Initialize meme generator
             window.memeGenerator = new MemeGenerator();
+
+            // Initialize easter egg system
+            window.easterEggSystem = new EasterEggSystem();
 
             // Check for reduced motion preference
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
