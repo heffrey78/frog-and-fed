@@ -1,6 +1,12 @@
-# Google Cloud SDK
+# Google Cloud SDK (all variants)
 google-cloud-sdk/
-google-cloud-cli-linux-x86_64.tar.gz
+google-cloud-cli-*
+gcloud-*
+*.tar.gz
+
+# Deployment artifacts
+deploy-logs/
+deployment-temp/
 
 # Other build artifacts
 *.log
@@ -8,12 +14,25 @@ google-cloud-cli-linux-x86_64.tar.gz
 node_modules/
 dist/
 build/
+temp/
+tmp/
 
 # IDE files
 .vscode/
 .idea/
 *.swp
 *.swo
+*~
 
 # OS files
 Thumbs.db
+.DS_Store
+
+# Backup files
+*.backup
+*.bak
+*-backup.*
+
+# Package managers
+package-lock.json
+yarn.lock
