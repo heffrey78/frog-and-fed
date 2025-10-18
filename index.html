@@ -223,14 +223,15 @@
         .poster-image {
             width: 100%;
             height: 500px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 40px;
             position: relative;
             overflow: hidden;
+        }
+
+        .poster-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
         }
 
         .poster-image::before {
@@ -771,9 +772,8 @@
             <h2 class="section-title">The Complete Collection</h2>
             <div class="poster-grid">
                 <div class="poster-card" onclick="showModal('notebook')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-                        <div class="poster-emoji">🐸💧</div>
-                        <div class="poster-title-overlay">THE FROG<br>AND THE FED</div>
+                    <div class="poster-image">
+                        <img src="assets/frog-and-fed-notebook.png" alt="The Frog and The Fed Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>The Notebook Style</h3>
@@ -787,9 +787,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('sally')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-                        <div class="poster-emoji">🐸☕</div>
-                        <div class="poster-title-overlay">WHEN RIOT<br>MET SALLY</div>
+                    <div class="poster-image">
+                        <img src="assets/when-riot-met-sally.png" alt="When Riot Met Sally Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>When Harry Met Sally Parody</h3>
@@ -803,9 +802,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('titanic')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
-                        <div class="poster-emoji">🐸🌉</div>
-                        <div class="poster-title-overlay">TITANIC:<br>PORTLAND STORY</div>
+                    <div class="poster-image">
+                        <img src="assets/titanic-portand.png" alt="Titanic Portland Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>Titanic: The Portland Remix</h3>
@@ -819,9 +817,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('star')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
-                        <div class="poster-emoji">🐸🎤</div>
-                        <div class="poster-title-overlay">A STAR IS<br>INFLATED</div>
+                    <div class="poster-image">
+                        <img src="assets/star-is-inflated.png" alt="A Star Is Inflated Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>A Star Is Born</h3>
@@ -835,9 +832,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('fault')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                        <div class="poster-emoji">🐸💨</div>
-                        <div class="poster-title-overlay">THE FAULT IN<br>OUR TEAR GAS</div>
+                    <div class="poster-image">
+                        <img src="assets/fault-in-our-teargas.png" alt="The Fault In Our Teargas Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>The Fault In Our Stars</h3>
@@ -851,9 +847,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('pride')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);">
-                        <div class="poster-emoji">🐸🌫️</div>
-                        <div class="poster-title-overlay">PRIDE &<br>PEPPER SPRAY</div>
+                    <div class="poster-image">
+                        <img src="assets/pride-and-pepperspray.png" alt="Pride and Pepper Spray Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>Pride and Prejudice</h3>
@@ -867,9 +862,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('eternal')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
-                        <div class="poster-emoji">🐸✨</div>
-                        <div class="poster-title-overlay">ETERNAL SUNSHINE<br>OF THE SPOTLESS<br>PROTEST</div>
+                    <div class="poster-image">
+                        <img src="assets/eternal-sunshine-protest.png" alt="Eternal Sunshine of the Spotless Mind Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>Eternal Sunshine</h3>
@@ -883,9 +877,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('lady')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);">
-                        <div class="poster-emoji">🐸🍝</div>
-                        <div class="poster-title-overlay">LADY AND THE<br>TACTICAL RESPONSE</div>
+                    <div class="poster-image">
+                        <img src="assets/lady-and-tactical-response.png" alt="Lady and the Tramp Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>Lady and the Tramp</h3>
@@ -899,9 +892,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('ghost')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);">
-                        <div class="poster-emoji">🐸🎨</div>
-                        <div class="poster-title-overlay">GHOST:<br>THE PORTLAND CUT</div>
+                    <div class="poster-image">
+                        <img src="assets/ghost-portland.png" alt="Ghost Portland Cut Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>Ghost</h3>
@@ -915,9 +907,8 @@
                 </div>
 
                 <div class="poster-card" onclick="showModal('fifty')">
-                    <div class="poster-image" style="background: linear-gradient(135deg, #434343 0%, #000000 100%);">
-                        <div class="poster-emoji">🐸⛓️</div>
-                        <div class="poster-title-overlay" style="color: #ccc;">FIFTY SHADES OF<br>TACTICAL GREY</div>
+                    <div class="poster-image">
+                        <img src="assets/fifty-shades-pepperspray.png" alt="Fifty Shades of Pepper Spray Movie Poster">
                     </div>
                     <div class="poster-content">
                         <h3>Fifty Shades</h3>
