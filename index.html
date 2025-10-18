@@ -2013,6 +2013,213 @@
             transform: translateY(-2px);
         }
 
+        /* Romance Simulator Styles */
+        .romance-modal-content {
+            width: 900px;
+            max-width: 95vw;
+            background: var(--dark);
+            color: white;
+        }
+
+        .romance-game-area {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .romance-scene {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border-radius: 15px;
+            padding: 20px;
+            min-height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scene-background {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(45deg, rgba(255,192,203,0.1), rgba(135,206,235,0.1));
+            border-radius: 10px;
+        }
+
+        .scene-characters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 200px;
+            padding: 0 40px;
+        }
+
+        .character {
+            font-size: 4rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+        }
+
+        .character-frog:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .character-fed:hover {
+            transform: scale(1.1) rotate(-10deg);
+        }
+
+        .scene-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .romance-stats {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .stat-bar {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+
+        .stat-bar-container {
+            flex: 1;
+            height: 12px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .stat-bar-fill {
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 6px;
+        }
+
+        .romance-bar {
+            background: linear-gradient(90deg, #ff69b4, #ff1493);
+        }
+
+        .tension-bar {
+            background: linear-gradient(90deg, #ff4500, #dc143c);
+        }
+
+        .understanding-bar {
+            background: linear-gradient(90deg, #32cd32, #228b22);
+        }
+
+        .romance-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+
+        .story-display {
+            grid-column: 1 / -1;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 10px 0;
+        }
+
+        .story-text {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            min-height: 80px;
+        }
+
+        .character-speaking {
+            font-style: italic;
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .choice-buttons {
+            grid-column: 1 / -1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .choice-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .choice-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .choice-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .romance-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .romance-controls button {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .romance-controls button:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .romance-game-area {
+                grid-template-columns: 1fr;
+            }
+
+            .scene-characters {
+                padding: 0 20px;
+            }
+
+            .character {
+                font-size: 3rem;
+            }
+
+            .choice-btn {
+                min-width: 150px;
+            }
+        }
+
         /* Enhanced Modal */
         .modal {
             display: none;
@@ -2873,11 +3080,11 @@
                         </div>
                         <button class="game-play-btn">🎮 Play Now</button>
                     </div>
-                    <div class="game-card coming-soon">
+                    <div class="game-card" onclick="launchRomanceSimulator()">
                         <div class="game-icon">💕📖</div>
                         <h3>Romance Simulator</h3>
                         <p>Navigate the complex relationship between Frog and Fed in this branching story.</p>
-                        <div class="coming-soon-badge">Coming Soon</div>
+                        <div class="high-score">Best Ending: <span id="romanceHighScore">None</span></div>
                     </div>
                 </div>
             </div>
@@ -3023,6 +3230,76 @@ Level 4: National Guard for twerking unicorns</code>
 
     <!-- Easter Egg -->
     <div class="easter-egg" id="easter-egg">💕</div>
+
+    <!-- Romance Simulator Modal -->
+    <div id="romanceModal" class="modal game-modal">
+        <div class="modal-content romance-modal-content">
+            <span class="close" onclick="closeRomanceSimulator()">&times;</span>
+            <h2>💕 Romance Simulator: Frog & Fed</h2>
+
+            <div class="romance-game-area">
+                <!-- Scene Display -->
+                <div class="romance-scene">
+                    <div class="scene-background" id="romanceBackground">
+                        <div class="scene-characters">
+                            <div class="character character-frog" id="frogCharacter">🐸</div>
+                            <div class="character character-fed" id="fedCharacter">👮‍♂️</div>
+                        </div>
+                        <div class="scene-effects" id="sceneEffects"></div>
+                    </div>
+                </div>
+
+                <!-- Story Text -->
+                <div class="story-display">
+                    <div class="story-text" id="storyText">
+                        Welcome to the Romance Simulator! Navigate the complex relationship between our unlikely duo.
+                    </div>
+                    <div class="character-speaking" id="characterSpeaking"></div>
+                </div>
+
+                <!-- Choices -->
+                <div class="choice-buttons" id="choiceButtons">
+                    <button class="choice-btn" onclick="startRomanceGame()">🎬 Begin Story</button>
+                </div>
+
+                <!-- Stats -->
+                <div class="romance-stats">
+                    <div class="stat-bar">
+                        <span>💕 Romance</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar-fill romance-bar" id="romanceLevel" style="width: 0%"></div>
+                        </div>
+                        <span id="romanceValue">0%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span>😤 Tension</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar-fill tension-bar" id="tensionLevel" style="width: 50%"></div>
+                        </div>
+                        <span id="tensionValue">50%</span>
+                    </div>
+                    <div class="stat-bar">
+                        <span>🤝 Understanding</span>
+                        <div class="stat-bar-container">
+                            <div class="stat-bar-fill understanding-bar" id="understandingLevel" style="width: 0%"></div>
+                        </div>
+                        <span id="understandingValue">0%</span>
+                    </div>
+                    <div class="romance-info">
+                        <span>Chapter: <span id="currentChapter">1</span></span>
+                        <span>Ending: <span id="currentEnding">Unknown</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="romance-controls">
+                <button onclick="resetRomanceGame()">🔄 Restart Story</button>
+                <button onclick="showRomanceProgress()">📊 View Progress</button>
+                <button onclick="toggleRomanceMusic()">🎵 Music</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Enhanced Modal -->
     <div class="modal" id="modal">
@@ -6574,6 +6851,399 @@ Level 4: National Guard for twerking unicorns</code>
                 window.tetrisGame.hardDrop();
             }
         }
+
+        // Romance Simulator Game
+        class RomanceSimulator {
+            constructor() {
+                this.gameState = 'stopped';
+                this.currentChapter = 1;
+                this.romance = 0;
+                this.tension = 50;
+                this.understanding = 0;
+                this.currentStoryNode = 'start';
+                this.visitedNodes = new Set();
+                this.bestEnding = localStorage.getItem('romanceBestEnding') || 'None';
+                this.musicEnabled = localStorage.getItem('romanceMusic') === 'true';
+
+                this.storyData = this.initializeStoryData();
+                this.loadBestEnding();
+            }
+
+            initializeStoryData() {
+                return {
+                    start: {
+                        text: "Portland, 2025. Rain drizzles on the protest camp. Seth adjusts his inflatable frog costume as Officer Martinez approaches through the mist...",
+                        speaker: "Narrator",
+                        choices: [
+                            { text: "🐸 Playfully hop away", next: "playful_hop", romance: +5, tension: -10 },
+                            { text: "😤 Stand your ground defiantly", next: "defiant_stand", tension: +15, understanding: -5 },
+                            { text: "🤝 Calmly introduce yourself", next: "calm_intro", understanding: +10, tension: -5 }
+                        ],
+                        background: "protest"
+                    },
+                    playful_hop: {
+                        text: "Your playful bouncing catches Martinez off guard. A small smile cracks their stern expression as you perform an elaborate frog dance.",
+                        speaker: "Martinez",
+                        dialogue: "\"Okay, that's... actually kind of cute. But you still can't block the entrance.\"",
+                        choices: [
+                            { text: "💃 Invite them to dance", next: "dance_invite", romance: +15, tension: -10 },
+                            { text: "🎭 Explain the performance art", next: "art_explanation", understanding: +10 },
+                            { text: "😏 Suggest a compromise", next: "compromise_attempt", understanding: +5, romance: +5 }
+                        ],
+                        background: "playful"
+                    },
+                    defiant_stand: {
+                        text: "You inflate even more, becoming a magnificent green sphere of resistance. Martinez's jaw tightens, but there's something else in their eyes...",
+                        speaker: "Martinez",
+                        dialogue: "\"You're either very brave or very stupid. I haven't decided which.\"",
+                        choices: [
+                            { text: "🔥 'Why not both?'", next: "brave_stupid", romance: +10, tension: +5 },
+                            { text: "📝 Quote civil disobedience", next: "philosophy_quote", understanding: +15 },
+                            { text: "👀 Stare intensely", next: "intense_stare", romance: +5, tension: +10 }
+                        ],
+                        background: "tense"
+                    },
+                    calm_intro: {
+                        text: "You deflate slightly and extend a green mitt. 'Seth Todd, professional silly person. You are?'",
+                        speaker: "Martinez",
+                        dialogue: "\"Officer Martinez. And this is... not what I expected from today's shift.\"",
+                        choices: [
+                            { text: "☕ 'Coffee break conversation?'", next: "coffee_suggestion", romance: +10, understanding: +10 },
+                            { text: "🎪 'Life's full of surprises!'", next: "surprise_philosophy", understanding: +5, romance: +5 },
+                            { text: "🤔 'What did you expect?'", next: "expectation_question", understanding: +15 }
+                        ],
+                        background: "neutral"
+                    },
+                    dance_invite: {
+                        text: "Martinez hesitates, glances around, then awkwardly attempts a small step. Other officers watch in bewilderment.",
+                        speaker: "Martinez",
+                        dialogue: "\"I... this is highly irregular. But it's been a long week.\"",
+                        choices: [
+                            { text: "🎶 'Dance makes everything better'", next: "dance_philosophy", romance: +20, understanding: +10 },
+                            { text: "🤐 Say nothing, just dance", next: "silent_dance", romance: +15, tension: -20 },
+                            { text: "😄 'You're a natural!'", next: "compliment_dancing", romance: +10, understanding: +5 }
+                        ],
+                        background: "romantic"
+                    },
+                    coffee_suggestion: {
+                        text: "Twenty minutes later, you're sitting in a 24-hour diner, frog costume dripping on the vinyl booth.",
+                        speaker: "Martinez",
+                        dialogue: "\"So... why a frog? I mean, really why?\"",
+                        choices: [
+                            { text: "🌊 'Frogs adapt to any environment'", next: "adaptation_metaphor", understanding: +15, romance: +5 },
+                            { text: "😂 'Makes people smile in dark times'", next: "joy_mission", romance: +10, understanding: +10 },
+                            { text: "💭 'What makes you a cop?'", next: "reverse_question", understanding: +20 }
+                        ],
+                        background: "intimate"
+                    },
+                    dance_philosophy: {
+                        text: "As you both move awkwardly to imaginary music, the absurdity breaks down walls. Other protesters and officers watch the surreal scene.",
+                        speaker: "Martinez",
+                        dialogue: "\"You know, in another life, I might have been at these protests myself.\"",
+                        choices: [
+                            { text: "💫 'It's never too late'", next: "never_too_late", romance: +25, understanding: +15 },
+                            { text: "❓ 'What changed?'", next: "what_changed", understanding: +20 },
+                            { text: "🤗 'You're here now'", next: "present_moment", romance: +15, understanding: +10 }
+                        ],
+                        background: "breakthrough"
+                    },
+                    never_too_late: {
+                        text: "Martinez stops dancing, looks directly at you through the frog costume's googly eyes. Rain starts falling harder.",
+                        speaker: "Martinez",
+                        dialogue: "\"You're dangerous, you know that? Making me think about things I've buried.\"",
+                        choices: [
+                            { text: "💕 'The best people usually are'", next: "ending_romance", romance: +30 },
+                            { text: "🌟 'Change is beautiful'", next: "ending_transformation", understanding: +25 },
+                            { text: "🌧️ 'Want to get coffee again?'", next: "ending_friendship", romance: +20, understanding: +20 }
+                        ],
+                        background: "climax"
+                    },
+                    ending_romance: {
+                        text: "Six months later, Martinez joins the protest movement. You're still wearing the frog costume at your wedding.",
+                        speaker: "Narrator",
+                        dialogue: "\"Some love stories begin with tear gas and end with hope.\"",
+                        ending: "True Love",
+                        endingType: "best"
+                    },
+                    ending_transformation: {
+                        text: "Martinez becomes a whistleblower, exposing police misconduct. You keep the frog costume as a reminder of the day everything changed.",
+                        speaker: "Narrator",
+                        dialogue: "\"Revolution sometimes wears an inflatable costume.\"",
+                        ending: "Revolutionary",
+                        endingType: "good"
+                    },
+                    ending_friendship: {
+                        text: "You meet monthly for coffee, bridging two worlds. The frog costume hangs in Martinez's locker as a reminder.",
+                        speaker: "Narrator",
+                        dialogue: "\"Understanding is the first step toward change.\"",
+                        ending: "Friendship",
+                        endingType: "neutral"
+                    }
+                    // Add more story branches as needed
+                };
+            }
+
+            start() {
+                this.gameState = 'playing';
+                this.currentChapter = 1;
+                this.romance = 0;
+                this.tension = 50;
+                this.understanding = 0;
+                this.currentStoryNode = 'start';
+                this.visitedNodes.clear();
+
+                this.updateUI();
+                this.displayStoryNode(this.currentStoryNode);
+
+                // Track game start
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('game_started', {
+                        game: 'romanceSimulator'
+                    });
+                }
+            }
+
+            makeChoice(choiceIndex) {
+                if (this.gameState !== 'playing') return;
+
+                const currentNode = this.storyData[this.currentStoryNode];
+                const choice = currentNode.choices[choiceIndex];
+
+                // Apply stat changes
+                if (choice.romance) this.romance = Math.max(0, Math.min(100, this.romance + choice.romance));
+                if (choice.tension) this.tension = Math.max(0, Math.min(100, this.tension + choice.tension));
+                if (choice.understanding) this.understanding = Math.max(0, Math.min(100, this.understanding + choice.understanding));
+
+                // Add visual effects
+                this.addSceneEffect(choice);
+
+                // Move to next node
+                this.currentStoryNode = choice.next;
+                this.visitedNodes.add(this.currentStoryNode);
+
+                // Check for chapter progression
+                if (this.visitedNodes.size % 3 === 0) {
+                    this.currentChapter++;
+                }
+
+                setTimeout(() => {
+                    this.updateUI();
+                    this.displayStoryNode(this.currentStoryNode);
+                }, 1000);
+            }
+
+            displayStoryNode(nodeId) {
+                const node = this.storyData[nodeId];
+                if (!node) return;
+
+                // Update background
+                this.updateBackground(node.background);
+
+                // Display text
+                document.getElementById('storyText').textContent = node.text;
+
+                // Display speaker and dialogue
+                const speakerDiv = document.getElementById('characterSpeaking');
+                if (node.dialogue) {
+                    speakerDiv.innerHTML = `<strong>${node.speaker}:</strong> ${node.dialogue}`;
+                } else {
+                    speakerDiv.innerHTML = `<strong>${node.speaker}</strong>`;
+                }
+
+                // Check for ending
+                if (node.ending) {
+                    this.handleEnding(node);
+                    return;
+                }
+
+                // Display choices
+                this.displayChoices(node.choices);
+            }
+
+            displayChoices(choices) {
+                const choiceContainer = document.getElementById('choiceButtons');
+                choiceContainer.innerHTML = '';
+
+                choices.forEach((choice, index) => {
+                    const button = document.createElement('button');
+                    button.className = 'choice-btn';
+                    button.textContent = choice.text;
+                    button.onclick = () => this.makeChoice(index);
+                    choiceContainer.appendChild(button);
+                });
+            }
+
+            updateBackground(bgType) {
+                const background = document.getElementById('romanceBackground');
+                const backgrounds = {
+                    protest: 'linear-gradient(135deg, #1a1a2e, #16213e)',
+                    playful: 'linear-gradient(135deg, rgba(255,192,203,0.3), rgba(135,206,235,0.3))',
+                    tense: 'linear-gradient(135deg, rgba(255,69,0,0.3), rgba(220,20,60,0.3))',
+                    neutral: 'linear-gradient(135deg, rgba(128,128,128,0.2), rgba(169,169,169,0.2))',
+                    romantic: 'linear-gradient(135deg, rgba(255,105,180,0.4), rgba(255,20,147,0.4))',
+                    intimate: 'linear-gradient(135deg, rgba(255,215,0,0.2), rgba(255,165,0,0.2))',
+                    breakthrough: 'linear-gradient(135deg, rgba(50,205,50,0.3), rgba(34,139,34,0.3))',
+                    climax: 'linear-gradient(135deg, rgba(255,215,0,0.4), rgba(255,105,180,0.4))'
+                };
+
+                background.style.background = backgrounds[bgType] || backgrounds.neutral;
+            }
+
+            addSceneEffect(choice) {
+                const effects = document.getElementById('sceneEffects');
+                const effect = document.createElement('div');
+
+                if (choice.romance > 0) {
+                    effect.textContent = '💕';
+                } else if (choice.understanding > 0) {
+                    effect.textContent = '🤝';
+                } else if (choice.tension > 0) {
+                    effect.textContent = '⚡';
+                } else {
+                    effect.textContent = '✨';
+                }
+
+                effect.style.cssText = `
+                    position: absolute;
+                    font-size: 2rem;
+                    animation: floatUp 2s ease-out forwards;
+                    left: 50%;
+                    top: 50%;
+                    transform: translate(-50%, -50%);
+                    pointer-events: none;
+                    z-index: 10;
+                `;
+
+                effects.appendChild(effect);
+                setTimeout(() => effect.remove(), 2000);
+            }
+
+            updateUI() {
+                // Update stat bars
+                document.getElementById('romanceLevel').style.width = `${this.romance}%`;
+                document.getElementById('tensionLevel').style.width = `${this.tension}%`;
+                document.getElementById('understandingLevel').style.width = `${this.understanding}%`;
+
+                // Update stat values
+                document.getElementById('romanceValue').textContent = `${this.romance}%`;
+                document.getElementById('tensionValue').textContent = `${this.tension}%`;
+                document.getElementById('understandingValue').textContent = `${this.understanding}%`;
+
+                // Update chapter and ending
+                document.getElementById('currentChapter').textContent = this.currentChapter;
+                document.getElementById('currentEnding').textContent = this.calculateCurrentEnding();
+            }
+
+            calculateCurrentEnding() {
+                if (this.romance >= 70 && this.understanding >= 60) return "True Love";
+                if (this.understanding >= 70) return "Revolutionary";
+                if (this.romance >= 50 && this.understanding >= 40) return "Friendship";
+                if (this.tension >= 80) return "Conflict";
+                return "Unknown";
+            }
+
+            handleEnding(node) {
+                this.gameState = 'ended';
+
+                // Update best ending if this is better
+                const endingRanks = { "True Love": 4, "Revolutionary": 3, "Friendship": 2, "Conflict": 1 };
+                const currentRank = endingRanks[node.ending] || 0;
+                const bestRank = endingRanks[this.bestEnding] || 0;
+
+                if (currentRank > bestRank) {
+                    this.bestEnding = node.ending;
+                    localStorage.setItem('romanceBestEnding', this.bestEnding);
+                    document.getElementById('romanceHighScore').textContent = this.bestEnding;
+                }
+
+                // Track completion
+                if (window.timelineSystem) {
+                    window.timelineSystem.trackInteraction('game_completed', {
+                        game: 'romanceSimulator',
+                        ending: node.ending,
+                        romance: this.romance,
+                        understanding: this.understanding,
+                        tension: this.tension,
+                        isNewBest: currentRank > bestRank
+                    });
+                }
+
+                // Display ending choices
+                const choiceContainer = document.getElementById('choiceButtons');
+                choiceContainer.innerHTML = `
+                    <div style="text-align: center; margin: 20px 0;">
+                        <h3>🎭 ${node.ending} Ending Achieved!</h3>
+                        <p style="margin: 15px 0;">${node.dialogue}</p>
+                    </div>
+                    <button class="choice-btn" onclick="resetRomanceGame()">🔄 Play Again</button>
+                    <button class="choice-btn" onclick="showRomanceProgress()">📊 View All Endings</button>
+                `;
+            }
+
+            loadBestEnding() {
+                document.getElementById('romanceHighScore').textContent = this.bestEnding;
+            }
+        }
+
+        // Romance Simulator control functions
+        function launchRomanceSimulator() {
+            const modal = document.getElementById('romanceModal');
+            modal.style.display = 'block';
+            if (!window.romanceGame) {
+                window.romanceGame = new RomanceSimulator();
+            }
+
+            // Add click-outside-to-close functionality
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeRomanceSimulator();
+                }
+            });
+        }
+
+        function closeRomanceSimulator() {
+            document.getElementById('romanceModal').style.display = 'none';
+            if (window.romanceGame) {
+                window.romanceGame.gameState = 'stopped';
+            }
+        }
+
+        function startRomanceGame() {
+            if (window.romanceGame) {
+                window.romanceGame.start();
+            }
+        }
+
+        function resetRomanceGame() {
+            if (window.romanceGame) {
+                window.romanceGame.start();
+            }
+        }
+
+        function showRomanceProgress() {
+            // Show progress modal with all possible endings
+            alert('Romance Progress: Track your different story paths and endings! (Coming in future update)');
+        }
+
+        function toggleRomanceMusic() {
+            if (window.romanceGame) {
+                window.romanceGame.musicEnabled = !window.romanceGame.musicEnabled;
+                localStorage.setItem('romanceMusic', window.romanceGame.musicEnabled);
+                // Music toggle implementation would go here
+                alert(`Music ${window.romanceGame.musicEnabled ? 'enabled' : 'disabled'}`);
+            }
+        }
+
+        // Add floating animation for scene effects
+        const floatUpStyle = document.createElement('style');
+        floatUpStyle.textContent = `
+            @keyframes floatUp {
+                0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+                50% { opacity: 1; transform: translate(-50%, -70%) scale(1); }
+                100% { opacity: 0; transform: translate(-50%, -90%) scale(0.8); }
+            }
+        `;
+        document.head.appendChild(floatUpStyle);
 
         // Initialize systems when page loads
         window.addEventListener('load', () => {
