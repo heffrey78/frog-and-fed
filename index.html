@@ -1917,6 +1917,47 @@
             100% { opacity: 0; transform: translate(-50%, -50%) scale(0.9); }
         }
 
+        /* Close button styles */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 32px;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            z-index: 1001;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        /* Modal content styles */
+        .modal-content {
+            position: relative;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 90vw;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .engagement-modal {
+            width: 600px;
+            max-width: 90vw;
+        }
+
+        .story-modal-content {
+            width: 700px;
+            max-width: 90vw;
+        }
+
         /* Enhanced Modal */
         .modal {
             display: none;
@@ -2768,7 +2809,7 @@
                         </div>
                         <button class="game-play-btn">🎮 Play Now</button>
                     </div>
-                    <div class="game-card" onclick="launchTearGasTetris()">
+                    <div class="game-card" onclick="launchTetris()">
                         <div class="game-icon">🌶️📦</div>
                         <h3>Tear Gas Tetris</h3>
                         <p>Stack protective gear to survive the chaos! Build your defense piece by piece.</p>
@@ -4032,6 +4073,14 @@ Level 4: National Guard for twerking unicorns</code>
                         </div>
                     </div>
                 `;
+
+                // Add click-outside-to-close functionality
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.remove();
+                    }
+                });
+
                 document.body.appendChild(modal);
             }
 
@@ -4235,6 +4284,21 @@ Level 4: National Guard for twerking unicorns</code>
                         </div>
                     </div>
                 `;
+
+                // Add click-outside-to-close functionality
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeStoryModal();
+                    }
+                });
+
+                // Add escape key to close
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && modal.style.display === 'block') {
+                        closeStoryModal();
+                    }
+                });
+
                 document.body.appendChild(modal);
             }
 
@@ -5646,11 +5710,19 @@ Level 4: National Guard for twerking unicorns</code>
 
         // Global game functions
         function launchFrogPong() {
-            document.getElementById('frogPongModal').style.display = 'block';
+            const modal = document.getElementById('frogPongModal');
+            modal.style.display = 'block';
             if (!window.frogPongGame) {
                 window.frogPongGame = new FrogPongGame();
             }
             window.frogPongGame.draw();
+
+            // Add click-outside-to-close functionality
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeFrogPong();
+                }
+            });
         }
 
         function closeFrogPong() {
@@ -6377,11 +6449,19 @@ Level 4: National Guard for twerking unicorns</code>
 
         // Tetris game control functions
         function launchTetris() {
-            document.getElementById('tetrisModal').style.display = 'block';
+            const modal = document.getElementById('tetrisModal');
+            modal.style.display = 'block';
             if (!window.tetrisGame) {
                 window.tetrisGame = new TetrisGame();
             }
             window.tetrisGame.draw();
+
+            // Add click-outside-to-close functionality
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeTetris();
+                }
+            });
         }
 
         function closeTetris() {
