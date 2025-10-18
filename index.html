@@ -743,6 +743,351 @@
             }
         }
 
+        /* Interactive Timeline Controls */
+        .timeline-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .timeline-mode-btn {
+            background: linear-gradient(135deg, var(--primary), #4ade80);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-mode-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-mode-btn.active {
+            background: linear-gradient(135deg, #ff6b35, #f59e0b);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Interactive Timeline Items */
+        .interactive-timeline-item {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .interactive-timeline-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1), rgba(255, 107, 53, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px;
+            pointer-events: none;
+        }
+
+        .interactive-timeline-item:hover::after {
+            opacity: 1;
+        }
+
+        .timeline-click-hint {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            z-index: 10;
+        }
+
+        .interactive-timeline-item:hover .timeline-click-hint {
+            opacity: 1;
+            bottom: -25px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .timeline-mode-btn {
+                width: 100%;
+                max-width: 280px;
+            }
+
+            .timeline-click-hint {
+                position: static;
+                transform: none;
+                margin-top: 10px;
+                opacity: 1;
+                bottom: auto;
+            }
+        }
+
+        /* Story Modal Styles */
+        .story-modal-content {
+            max-width: 600px;
+            margin: 5% auto;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .story-content {
+            padding: 30px;
+        }
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .story-emoji {
+            font-size: 4rem;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .story-title {
+            font-size: 2rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .story-body {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .story-narrative {
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .story-narrative p {
+            margin-bottom: 15px;
+        }
+
+        .story-narrative strong {
+            color: #ffd700;
+        }
+
+        .story-choices {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .story-choice-btn {
+            background: linear-gradient(135deg, #ff6b35, #f59e0b);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .story-choice-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .story-modal-content {
+                margin: 10% 15px;
+            }
+
+            .story-content {
+                padding: 20px;
+            }
+
+            .story-emoji {
+                font-size: 3rem;
+            }
+
+            .story-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Character Modal Styles */
+        .character-modal-content {
+            max-width: 700px;
+            margin: 3% auto;
+            background: linear-gradient(135deg, #ff6b35 0%, #f59e0b 100%);
+            color: white;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .character-profile {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .character-avatar {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .character-emoji {
+            font-size: 5rem;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .character-name {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .character-role {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .character-details {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .character-stats {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
+        .stat-value {
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .character-backstory,
+        .character-personality,
+        .character-quote {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .character-backstory h4,
+        .character-personality h4,
+        .character-quote h4 {
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+            color: #ffd700;
+        }
+
+        .backstory-text,
+        .personality-text {
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .quote-text {
+            margin: 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            border-left: 4px solid #ffd700;
+            padding-left: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+            padding: 10px 15px;
+        }
+
+        .character-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .character-action-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .character-action-btn:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .character-modal-content {
+                margin: 5% 10px;
+            }
+
+            .character-profile {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+
+            .character-emoji {
+                font-size: 4rem;
+            }
+
+            .character-name {
+                font-size: 1.5rem;
+            }
+        }
+
         /* Footer */
         footer {
             background: rgba(0,0,0,0.9);
@@ -1438,11 +1783,16 @@
             </div>
         </section>
 
-        <!-- The Story Timeline -->
+        <!-- Interactive Story Timeline -->
         <section class="section" id="story">
-            <h2 class="section-title">How It Happened</h2>
+            <h2 class="section-title">The Love Story: An Interactive Timeline</h2>
+            <div class="timeline-controls">
+                <button class="timeline-mode-btn active" data-mode="story">📖 Love Story Mode</button>
+                <button class="timeline-mode-btn" data-mode="documentary">📰 Documentary Mode</button>
+                <button class="timeline-mode-btn" data-mode="characters">👥 Character Focus</button>
+            </div>
             <div class="timeline">
-                <div class="timeline-item" data-emoji="🐸" data-scene="👤➡️🐸" data-caption="The first frog appears">
+                <div class="timeline-item interactive-timeline-item" data-emoji="🐸" data-scene="👤➡️🐸" data-caption="The first frog appears" data-character="seth" data-story-id="beginning" onclick="openTimelineStory(this)">
                     <div class="timeline-marker">
                         <span class="timeline-emoji">🐸</span>
                         <div class="timeline-line"></div>
@@ -1454,6 +1804,7 @@
                             <div class="emoji-mini-scene">👤➡️🐸</div>
                             <p>"Time to get silly with authoritarianism"</p>
                         </div>
+                        <div class="timeline-click-hint">🎬 Click to explore Seth's origin story</div>
                     </div>
                 </div>
 
@@ -2463,8 +2814,321 @@ Level 4: National Guard for twerking unicorns</code>
             }
         }
 
+        // Interactive Timeline System
+        class InteractiveTimeline {
+            constructor() {
+                this.currentMode = 'story';
+                this.storyData = this.initializeStoryData();
+                this.characterData = this.initializeCharacterData();
+                this.init();
+            }
+
+            init() {
+                this.bindModeButtons();
+                this.setupAnalytics();
+            }
+
+            bindModeButtons() {
+                const modeButtons = document.querySelectorAll('.timeline-mode-btn');
+                modeButtons.forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const mode = e.target.dataset.mode;
+                        this.switchMode(mode);
+                        this.trackInteraction('mode_change', mode);
+                    });
+                });
+            }
+
+            switchMode(mode) {
+                this.currentMode = mode;
+
+                // Update button states
+                document.querySelectorAll('.timeline-mode-btn').forEach(btn => {
+                    btn.classList.toggle('active', btn.dataset.mode === mode);
+                });
+
+                // Update timeline content based on mode
+                this.updateTimelineContent(mode);
+            }
+
+            updateTimelineContent(mode) {
+                const timelineItems = document.querySelectorAll('.timeline-item');
+
+                timelineItems.forEach(item => {
+                    const content = item.querySelector('.timeline-content');
+                    const storyId = item.dataset.storyId;
+
+                    if (storyId && this.storyData[storyId]) {
+                        const data = this.storyData[storyId];
+                        const modeContent = data.modes[mode] || data.modes.story;
+
+                        // Update the content while preserving structure
+                        const title = content.querySelector('h4');
+                        const description = content.querySelector('p');
+
+                        if (title) title.textContent = modeContent.title;
+                        if (description) description.textContent = modeContent.description;
+                    }
+                });
+            }
+
+            initializeStoryData() {
+                return {
+                    beginning: {
+                        modes: {
+                            story: {
+                                title: "June 2025: The Meet-Cute",
+                                description: "Seth Todd, a 24-year-old with a heart full of hope and a costume full of air, first dons the frog suit. Little does he know, his future love interest is getting fitted for tactical gear across town."
+                            },
+                            documentary: {
+                                title: "June 2025: The Beginning",
+                                description: "Seth Todd, 24, starts wearing a green inflatable frog costume to ICE facility protests. His mission: show how ridiculous the 'violent terrorist' narrative is."
+                            },
+                            characters: {
+                                title: "Seth's Origin Story",
+                                description: "Meet Seth Todd: College graduate, amateur comedian, professional absurdist. His superpower? Making authoritarianism look ridiculous one costume at a time."
+                            }
+                        }
+                    }
+                };
+            }
+
+            initializeCharacterData() {
+                return {
+                    seth: {
+                        name: "Seth Todd",
+                        age: 24,
+                        role: "The Romantic Lead (Frog)",
+                        backstory: "A recent college graduate with a degree in political science and a minor in performance art. Seth discovered his calling when he realized that the best way to combat fear-mongering was with googly eyes and an air pump.",
+                        personality: "Witty, fearless, surprisingly philosophical about civil disobedience",
+                        famousQuote: "I've definitely had spicier tamales.",
+                        loveLanguage: "Acts of resistance",
+                        emoji: "🐸"
+                    },
+                    fed: {
+                        name: "Agent [REDACTED]",
+                        age: "Classified",
+                        role: "The Brooding Love Interest",
+                        backstory: "A federal agent caught between duty and the growing realization that maybe, just maybe, the dancing frog has a point.",
+                        personality: "Stoic exterior, conflicted interior, secretly loves the absurdity",
+                        famousQuote: "[Classified, but probably involves tactical gear and feelings]",
+                        loveLanguage: "Begrudging respect",
+                        emoji: "👮‍♂️"
+                    }
+                };
+            }
+
+            setupAnalytics() {
+                this.analytics = {
+                    interactions: [],
+                    timeSpent: {},
+                    modesExplored: new Set(),
+                    storiesViewed: new Set()
+                };
+            }
+
+            trackInteraction(type, data) {
+                this.analytics.interactions.push({
+                    type,
+                    data,
+                    timestamp: Date.now()
+                });
+
+                if (type === 'mode_change') {
+                    this.analytics.modesExplored.add(data);
+                }
+
+                // Store in localStorage for persistence
+                localStorage.setItem('timelineAnalytics', JSON.stringify(this.analytics));
+            }
+        }
+
+        // Global function for timeline story clicks
+        function openTimelineStory(element) {
+            const storyId = element.dataset.storyId;
+            const character = element.dataset.character;
+
+            // Track the interaction
+            if (window.timelineSystem) {
+                window.timelineSystem.trackInteraction('story_opened', { storyId, character });
+            }
+
+            // Create and show story modal
+            showStoryModal(storyId, character);
+        }
+
+        function showStoryModal(storyId, character) {
+            // Create modal if it doesn't exist
+            let modal = document.getElementById('story-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'story-modal';
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content story-modal-content">
+                        <span class="close" onclick="closeStoryModal()">&times;</span>
+                        <div class="story-content">
+                            <div class="story-header">
+                                <div class="story-emoji"></div>
+                                <h3 class="story-title"></h3>
+                            </div>
+                            <div class="story-body">
+                                <div class="story-narrative"></div>
+                                <div class="story-choices">
+                                    <button class="story-choice-btn" onclick="exploreCharacter('${character}')">
+                                        👥 Learn about ${character === 'seth' ? 'Seth' : 'the Fed'}
+                                    </button>
+                                    <button class="story-choice-btn" onclick="showBehindScenes('${storyId}')">
+                                        🎬 Behind the Scenes
+                                    </button>
+                                    <button class="story-choice-btn" onclick="viewAlternateEnding('${storyId}')">
+                                        🎭 What If...?
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            // Populate modal content
+            const timeline = window.timelineSystem;
+            const storyData = timeline.storyData[storyId];
+            const characterData = timeline.characterData[character];
+
+            if (storyData && characterData) {
+                modal.querySelector('.story-emoji').textContent = characterData.emoji;
+                modal.querySelector('.story-title').textContent = `${characterData.name}'s Story`;
+                modal.querySelector('.story-narrative').innerHTML = `
+                    <p><strong>The Romantic Comedy Version:</strong></p>
+                    <p>${storyData.modes.story.description}</p>
+                    <p><strong>What Really Happened:</strong></p>
+                    <p>${storyData.modes.documentary.description}</p>
+                `;
+            }
+
+            modal.style.display = 'block';
+        }
+
+        function closeStoryModal() {
+            const modal = document.getElementById('story-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function exploreCharacter(character) {
+            const timeline = window.timelineSystem;
+            const characterData = timeline.characterData[character];
+
+            if (!characterData) return;
+
+            // Create character exploration modal
+            let modal = document.getElementById('character-modal');
+            if (!modal) {
+                modal = document.createElement('div');
+                modal.id = 'character-modal';
+                modal.className = 'modal';
+                modal.innerHTML = `
+                    <div class="modal-content character-modal-content">
+                        <span class="close" onclick="closeCharacterModal()">&times;</span>
+                        <div class="character-profile">
+                            <div class="character-avatar">
+                                <div class="character-emoji"></div>
+                                <div class="character-name"></div>
+                                <div class="character-role"></div>
+                            </div>
+                            <div class="character-details">
+                                <div class="character-stats">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Age:</span>
+                                        <span class="stat-value character-age"></span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Love Language:</span>
+                                        <span class="stat-value character-love-language"></span>
+                                    </div>
+                                </div>
+                                <div class="character-backstory">
+                                    <h4>Backstory</h4>
+                                    <p class="backstory-text"></p>
+                                </div>
+                                <div class="character-personality">
+                                    <h4>Personality</h4>
+                                    <p class="personality-text"></p>
+                                </div>
+                                <div class="character-quote">
+                                    <h4>Famous Quote</h4>
+                                    <blockquote class="quote-text"></blockquote>
+                                </div>
+                                <div class="character-actions">
+                                    <button class="character-action-btn" onclick="viewCharacterMoments('${character}')">
+                                        📸 Key Moments
+                                    </button>
+                                    <button class="character-action-btn" onclick="createCharacterMeme('${character}')">
+                                        🎨 Create Meme
+                                    </button>
+                                    <button class="character-action-btn" onclick="exploreRelationship('${character}')">
+                                        💕 Relationship Analysis
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+            }
+
+            // Populate character data
+            modal.querySelector('.character-emoji').textContent = characterData.emoji;
+            modal.querySelector('.character-name').textContent = characterData.name;
+            modal.querySelector('.character-role').textContent = characterData.role;
+            modal.querySelector('.character-age').textContent = characterData.age;
+            modal.querySelector('.character-love-language').textContent = characterData.loveLanguage;
+            modal.querySelector('.backstory-text').textContent = characterData.backstory;
+            modal.querySelector('.personality-text').textContent = characterData.personality;
+            modal.querySelector('.quote-text').textContent = `"${characterData.famousQuote}"`;
+
+            modal.style.display = 'block';
+
+            // Track character exploration
+            timeline.trackInteraction('character_explored', character);
+        }
+
+        function closeCharacterModal() {
+            const modal = document.getElementById('character-modal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function viewCharacterMoments(character) {
+            alert(`📸 Key moments for ${character} - interactive timeline coming soon!`);
+        }
+
+        function createCharacterMeme(character) {
+            alert(`🎨 Meme creator for ${character} - launching meme generator!`);
+        }
+
+        function exploreRelationship(character) {
+            const relationships = {
+                seth: "The eternal optimist meets immovable object. Seth's infectious joy slowly chips away at federal stoicism, proving that laughter truly is the best form of resistance.",
+                fed: "Duty vs. Heart: A classic internal conflict. Watching a dancing frog somehow makes more sense than most of their training scenarios."
+            };
+
+            alert(`💕 ${relationships[character] || 'Relationship dynamics coming soon!'}`);
+        }
+
+        function showBehindScenes(storyId) {
+            alert(`Behind the scenes for ${storyId} - coming soon! 🎬`);
+        }
+
+        function viewAlternateEnding(storyId) {
+            alert(`Alternate ending for ${storyId} - what if they had met differently? 🎭`);
+        }
+
         // Initialize systems when page loads
         window.addEventListener('load', () => {
+            // Initialize timeline system
+            window.timelineSystem = new InteractiveTimeline();
+
             // Check for reduced motion preference
             if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 new HeroParticleSystem();
