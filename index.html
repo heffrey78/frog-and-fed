@@ -759,6 +759,118 @@
             50% { transform: translateY(-8px); }
         }
 
+        /* Hero Particle System */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .weather-effects {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+
+        .weather-particle {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: weatherFall 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        .poster-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.3) 0%, transparent 70%);
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .hero-poster:hover .poster-glow {
+            opacity: 1;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .hero-poster {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Weather Animations */
+        @keyframes weatherFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.6;
+            }
+        }
+
+        /* Enhanced Hero Interactions */
+        .hero-poster img {
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .hero-poster:hover img {
+            transform: scale(1.02);
+            filter: brightness(1.1) saturate(1.1);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Particle Performance Optimization */
+        @media (prefers-reduced-motion: reduce) {
+            .hero-particles,
+            .weather-effects {
+                display: none;
+            }
+
+            .poster-glow {
+                animation: none;
+            }
+
+            .hero-poster:hover img {
+                transform: none;
+            }
+        }
+
         /* Responsive Modal */
         @media (max-width: 768px) {
             .modal-top-section {
@@ -819,6 +931,23 @@
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+
+            /* Mobile Particle Optimizations */
+            .weather-particle {
+                font-size: 1.2rem;
+            }
+
+            .hero-poster img {
+                transition: transform 0.2s ease;
+            }
+
+            .hero-poster:hover img {
+                transform: scale(1.01);
+            }
+
+            .poster-glow {
+                animation-duration: 3s;
+            }
         }
 
         /* Easter Egg */
@@ -865,12 +994,19 @@
     </nav>
 
     <div class="hero" id="hero">
+        <!-- Particle System Canvas -->
+        <canvas class="hero-particles" id="particleCanvas"></canvas>
+
+        <!-- Weather Effects -->
+        <div class="weather-effects" id="weatherEffects"></div>
+
         <div class="hero-content">
             <h1>🐸 The Frog and The Fed 💕</h1>
             <p class="subtitle">A love story nobody asked for. A romance nobody could prevent.</p>
-            
-            <div class="hero-poster">
+
+            <div class="hero-poster" id="heroPoster">
                 <img src="assets/frog-and-fed-notebook.png" alt="The Frog and The Fed Movie Poster">
+                <div class="poster-glow"></div>
             </div>
 
             <div class="cta-buttons">
@@ -1779,6 +1915,158 @@ Level 4: National Guard for twerking unicorns</code>
 
         // Create floating emojis periodically
         setInterval(createFloatingEmoji, 3000);
+
+        // Hero Particle System
+        class HeroParticleSystem {
+            constructor() {
+                this.canvas = document.getElementById('particleCanvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.particles = [];
+                this.mouse = { x: 0, y: 0 };
+                this.isTouch = window.matchMedia('(pointer: coarse)').matches;
+
+                this.init();
+                this.bindEvents();
+                this.animate();
+
+                // Weather effects
+                this.initWeatherEffects();
+            }
+
+            init() {
+                this.resize();
+                this.createParticles();
+            }
+
+            resize() {
+                const rect = this.canvas.parentElement.getBoundingClientRect();
+                this.canvas.width = rect.width;
+                this.canvas.height = rect.height;
+            }
+
+            createParticles() {
+                const particleCount = this.isTouch ? 8 : 15;
+                const emojis = ['🐸', '💧', '👮‍♂️', '💕', '🌫️', '✨'];
+
+                for (let i = 0; i < particleCount; i++) {
+                    this.particles.push({
+                        emoji: emojis[Math.floor(Math.random() * emojis.length)],
+                        x: Math.random() * this.canvas.width,
+                        y: Math.random() * this.canvas.height,
+                        vx: (Math.random() - 0.5) * 0.5,
+                        vy: (Math.random() - 0.5) * 0.5,
+                        rotation: Math.random() * 360,
+                        rotationSpeed: (Math.random() - 0.5) * 2,
+                        scale: 0.8 + Math.random() * 0.4,
+                        opacity: 0.3 + Math.random() * 0.4,
+                        phase: Math.random() * Math.PI * 2
+                    });
+                }
+            }
+
+            bindEvents() {
+                window.addEventListener('resize', () => this.resize());
+
+                if (!this.isTouch) {
+                    this.canvas.addEventListener('mousemove', (e) => {
+                        const rect = this.canvas.getBoundingClientRect();
+                        this.mouse.x = e.clientX - rect.left;
+                        this.mouse.y = e.clientY - rect.top;
+                    });
+                }
+            }
+
+            updateParticles() {
+                this.particles.forEach(particle => {
+                    // Floating motion
+                    particle.x += particle.vx + Math.sin(Date.now() * 0.001 + particle.phase) * 0.1;
+                    particle.y += particle.vy + Math.cos(Date.now() * 0.0008 + particle.phase) * 0.1;
+                    particle.rotation += particle.rotationSpeed;
+
+                    // Mouse interaction (desktop only)
+                    if (!this.isTouch) {
+                        const dx = this.mouse.x - particle.x;
+                        const dy = this.mouse.y - particle.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+
+                        if (distance < 100) {
+                            const force = (100 - distance) / 100;
+                            particle.x -= dx * force * 0.01;
+                            particle.y -= dy * force * 0.01;
+                        }
+                    }
+
+                    // Boundary wrapping
+                    if (particle.x < -50) particle.x = this.canvas.width + 50;
+                    if (particle.x > this.canvas.width + 50) particle.x = -50;
+                    if (particle.y < -50) particle.y = this.canvas.height + 50;
+                    if (particle.y > this.canvas.height + 50) particle.y = -50;
+                });
+            }
+
+            drawParticles() {
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+                this.particles.forEach(particle => {
+                    this.ctx.save();
+                    this.ctx.globalAlpha = particle.opacity;
+                    this.ctx.translate(particle.x, particle.y);
+                    this.ctx.rotate(particle.rotation * Math.PI / 180);
+                    this.ctx.scale(particle.scale, particle.scale);
+                    this.ctx.font = '24px Arial';
+                    this.ctx.textAlign = 'center';
+                    this.ctx.textBaseline = 'middle';
+                    this.ctx.fillText(particle.emoji, 0, 0);
+                    this.ctx.restore();
+                });
+            }
+
+            animate() {
+                this.updateParticles();
+                this.drawParticles();
+                requestAnimationFrame(() => this.animate());
+            }
+
+            initWeatherEffects() {
+                const weatherContainer = document.getElementById('weatherEffects');
+
+                // Create rain drops periodically
+                setInterval(() => {
+                    if (Math.random() < 0.3) { // 30% chance
+                        this.createWeatherParticle(weatherContainer, '💧');
+                    }
+                    if (Math.random() < 0.1) { // 10% chance
+                        this.createWeatherParticle(weatherContainer, '🌫️');
+                    }
+                }, 800);
+            }
+
+            createWeatherParticle(container, emoji) {
+                const particle = document.createElement('div');
+                particle.className = 'weather-particle';
+                particle.textContent = emoji;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+                particle.style.animationDelay = Math.random() * 2 + 's';
+
+                container.appendChild(particle);
+
+                // Remove after animation
+                setTimeout(() => {
+                    if (particle.parentNode) {
+                        particle.parentNode.removeChild(particle);
+                    }
+                }, 8000);
+            }
+        }
+
+        // Initialize particle system when page loads
+        window.addEventListener('load', () => {
+            // Check for reduced motion preference
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                new HeroParticleSystem();
+            }
+        });
     </script>
 </body>
 </html>
